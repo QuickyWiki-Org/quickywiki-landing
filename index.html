@@ -522,6 +522,11 @@
       backdrop-filter: blur(8px);
       font-size: 12px; font-weight: 500; color: var(--text3);
       letter-spacing: 0.04em; text-transform: uppercase;
+      opacity: 0; transform: translateY(16px);
+    }
+    .faq-eyebrow.visible {
+      opacity: 1; transform: translateY(0);
+      transition: opacity 0.5s var(--spring), transform 0.5s var(--spring);
     }
     .faq-eyebrow-line { width: 16px; height: 1.5px; background: var(--text3); border-radius: 9999px; }
     .faq-heading {
@@ -530,6 +535,11 @@
       font-weight: 500; letter-spacing: -0.025em; line-height: 1.1;
       color: var(--text); text-align: center;
       margin-bottom: 48px;
+      opacity: 0; transform: translateY(20px);
+    }
+    .faq-heading.visible {
+      opacity: 1; transform: translateY(0);
+      transition: opacity 0.55s var(--spring) 0.1s, transform 0.55s var(--spring) 0.1s;
     }
     .faq-heading em { font-style: italic; color: var(--green); }
 
@@ -945,19 +955,27 @@
     });
   });
 
-  // FAQ scroll reveal
-  const faqObserver = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      if (entry.isIntersecting) {
-        setTimeout(function() { entry.target.classList.add('visible'); }, entry.target.dataset.delay || 0);
-        faqObserver.unobserve(entry.target);
-      }
+  // FAQ scroll reveal — delayed so hero animations finish first
+  setTimeout(function() {
+    const faqObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          setTimeout(function() { entry.target.classList.add('visible'); }, entry.target.dataset.delay || 0);
+          faqObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelector('.faq-eyebrow').dataset.delay = 0;
+    document.querySelector('.faq-heading').dataset.delay = 80;
+    faqObserver.observe(document.querySelector('.faq-eyebrow'));
+    faqObserver.observe(document.querySelector('.faq-heading'));
+
+    document.querySelectorAll('.faq-item').forEach(function(item, i) {
+      item.dataset.delay = 180 + i * 60;
+      faqObserver.observe(item);
     });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.faq-item').forEach(function(item, i) {
-    item.dataset.delay = i * 60;
-    faqObserver.observe(item);
-  });
+  }, 1500);
 })();
 
 </script>
