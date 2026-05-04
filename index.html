@@ -329,6 +329,11 @@
       transition: all 0.15s var(--ease-out);
     }
     .beta-btn:hover { background: var(--green-d); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(0,105,62,0.36); }
+    .beta-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; box-shadow: none; }
+    .beta-error {
+      font-size: 13px; color: #c0392b; text-align: center;
+      margin-top: 10px; display: none;
+    }
     .beta-success {
       display: none;
       align-items: center; justify-content: center; gap: 10px;
@@ -672,6 +677,7 @@
           <input class="beta-input" type="email" placeholder="Enter your email" required autocomplete="email">
           <button class="beta-btn" type="submit">Join the waitlist</button>
         </form>
+        <div class="beta-error" id="betaError">Something went wrong. Please try again.</div>
         <div class="beta-success" id="betaSuccess">
           <div class="beta-success-check">
             <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -936,12 +942,37 @@
 */
 
 (function() {
+  const WAITLIST_URL = 'https://YOUR_FUNC.azurewebsites.net/api/waitlist/join';
+
   const form    = document.getElementById('betaForm');
   const success = document.getElementById('betaSuccess');
-  form.addEventListener('submit', function(e) {
+  const error   = document.getElementById('betaError');
+  const btn     = form.querySelector('.beta-btn');
+  const input   = form.querySelector('.beta-input');
+
+  form.addEventListener('submit', async function(e) {
     e.preventDefault();
-    form.style.display    = 'none';
-    success.style.display = 'flex';
+
+    btn.disabled    = true;
+    btn.textContent = 'Joining…';
+    error.style.display = 'none';
+
+    try {
+      const res = await fetch(WAITLIST_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: input.value.trim() }),
+      });
+
+      if (!res.ok) throw new Error(res.status);
+
+      form.style.display    = 'none';
+      success.style.display = 'flex';
+    } catch (_) {
+      error.style.display = 'block';
+      btn.disabled        = false;
+      btn.textContent     = 'Join the waitlist';
+    }
   });
 })();
 
