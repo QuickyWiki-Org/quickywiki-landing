@@ -481,89 +481,6 @@
       transform: scale(1.06);
     }
 
-    /* ── FEATURES SECTION ──────────────────────────────── */
-    .features {
-      position: relative; z-index: 1;
-      padding: 96px 48px 112px;
-    }
-    .features-inner {
-      max-width: 860px; margin: 0 auto;
-      display: flex; flex-direction: column; align-items: center;
-    }
-    .features-eyebrow {
-      display: inline-flex; align-items: center; gap: 7px;
-      background: rgba(255,255,255,0.7);
-      border: 1px solid var(--border);
-      border-radius: 9999px;
-      padding: 5px 16px 5px 10px;
-      margin-bottom: 22px;
-      backdrop-filter: blur(8px);
-      font-size: 12px; font-weight: 500; color: var(--text3);
-      letter-spacing: 0.04em; text-transform: uppercase;
-    }
-    .features-eyebrow-line {
-      width: 16px; height: 1.5px;
-      background: var(--text3); border-radius: 9999px;
-    }
-    .features-heading {
-      font-family: var(--fd);
-      font-size: clamp(32px, 3.5vw, 46px);
-      font-weight: 500;
-      letter-spacing: -0.025em;
-      line-height: 1.1;
-      color: var(--text);
-      text-align: center;
-      margin-bottom: 56px;
-    }
-    .features-heading em { font-style: italic; color: var(--green); }
-
-    .features-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      width: 100%;
-    }
-    .feature-card {
-      background: rgba(255,255,255,0.58);
-      backdrop-filter: blur(20px) saturate(180%);
-      -webkit-backdrop-filter: blur(20px) saturate(180%);
-      border: 1px solid rgba(255,255,255,0.80);
-      border-radius: 20px;
-      padding: 32px 30px;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.06), 0 1px 4px rgba(0,0,0,0.04);
-      transition: transform 0.28s var(--spring), box-shadow 0.28s var(--spring), border-color 0.28s;
-      opacity: 0; transform: translateY(32px);
-    }
-    .feature-card.visible {
-      opacity: 1; transform: translateY(0);
-      transition: opacity 0.6s var(--spring), transform 0.6s var(--spring),
-                  box-shadow 0.28s var(--spring), border-color 0.28s;
-    }
-    .feature-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(0,0,0,0.10), 0 0 0 1.5px rgba(0,105,62,0.22);
-      border-color: rgba(0,105,62,0.20);
-    }
-    .feature-icon {
-      width: 44px; height: 44px; border-radius: 12px;
-      background: var(--green-s);
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 20px;
-      flex-shrink: 0;
-    }
-    .feature-title {
-      font-family: var(--fd);
-      font-size: 19px; font-weight: 600;
-      letter-spacing: -0.02em;
-      color: var(--text);
-      margin-bottom: 8px;
-      line-height: 1.2;
-    }
-    .feature-desc {
-      font-size: 14.5px; color: var(--text2);
-      line-height: 1.65;
-    }
-
     /* ── FAQ SECTION ───────────────────────────────────── */
     .faq {
       position: relative; z-index: 1;
@@ -647,12 +564,10 @@
       nav { padding: 0 16px; }
       .nav-links { display: none; }
       .hero { padding: 62px 24px 0; }
-      .features { padding: 72px 24px 80px; }
       .faq { padding: 0 24px 80px; }
     }
     @media (max-width: 600px) {
       .phones-showcase { flex-direction: column; align-items: center; gap: 48px; }
-      .features-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -708,10 +623,6 @@
         <span class="line"><span class="line-inner l3"><em>of your day.</em></span></span>
       </h1>
 
-      <p class="hero-sub">
-        Daily quickies, on-demand summaries, and curated series — distilled from thousands of sources into reads you'll actually finish.
-      </p>
-
       <!-- STAY TUNED PILL -->
       <div class="stay-tuned-pill">
         <div class="stay-tuned-dot-wrap">
@@ -724,7 +635,7 @@
       <div class="beta-form-wrap">
         <form class="beta-form" id="betaForm">
           <input class="beta-input" type="email" placeholder="Enter your email" required autocomplete="email">
-          <button class="beta-btn" type="submit">Get early access</button>
+          <button class="beta-btn" type="submit">Join the waitlist</button>
         </form>
         <div class="beta-success" id="betaSuccess">
           <div class="beta-success-check">
@@ -825,64 +736,6 @@
     </div>
     -->
 
-  </div>
-</section>
-
-<!-- FEATURES -->
-<section class="features">
-  <div class="features-inner">
-
-      <div class="features-eyebrow">
-          <span class="features-eyebrow-line"></span>
-          What's coming
-          <span class="features-eyebrow-line"></span>
-      </div>
-
-    <h2 class="features-heading">Everything you need<br>to <em>stay sharp.</em></h2>
-
-    <div class="features-grid">
-
-      <div class="feature-card">
-        <div class="feature-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z" fill="#00693E"/>
-          </svg>
-        </div>
-        <div class="feature-title">Daily Quickies</div>
-        <div class="feature-desc">Fresh reads every morning, done in 5 minutes.</div>
-      </div>
-
-      <div class="feature-card">
-        <div class="feature-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-            <path d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7zm2.85 11.1l-.85.6V16h-4v-2.3l-.85-.6A4.997 4.997 0 017 9c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.63-.8 3.16-2.15 4.1z" fill="#00693E"/>
-          </svg>
-        </div>
-        <div class="feature-title">On-Demand Summaries</div>
-        <div class="feature-desc">Any topic. Distilled instantly.</div>
-      </div>
-
-      <div class="feature-card">
-        <div class="feature-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-            <path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9H9V9h10v2zm-4 4H9v-2h6v2zm4-8H9V5h10v2z" fill="#00693E"/>
-          </svg>
-        </div>
-        <div class="feature-title">Curated Series</div>
-        <div class="feature-desc">Structured deep dives, one bite at a time.</div>
-      </div>
-
-      <div class="feature-card">
-        <div class="feature-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#00693E"/>
-          </svg>
-        </div>
-        <div class="feature-title">11+ Categories</div>
-        <div class="feature-desc">Science, culture, tech, history — and more.</div>
-      </div>
-
-    </div>
   </div>
 </section>
 
@@ -1082,24 +935,6 @@
   });
 })();
 
-(function() {
-  const cards = document.querySelectorAll('.feature-card');
-  const observer = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry, i) {
-      if (entry.isIntersecting) {
-        setTimeout(function() {
-          entry.target.classList.add('visible');
-        }, entry.target.dataset.delay || 0);
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.15 });
-
-  cards.forEach(function(card, i) {
-    card.dataset.delay = i * 80;
-    observer.observe(card);
-  });
-})();
 </script>
 
 </body>
