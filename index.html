@@ -5,6 +5,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>QuickyWiki — The smartest 5 minutes of your day</title>
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=DM+Sans:opsz,wght@9..40,300..700&display=swap" rel="stylesheet">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is QuickyWiki?",
+        "acceptedAnswer": { "@type": "Answer", "text": "QuickyWiki is a mobile app that delivers daily 5-minute reads, on-demand topic summaries, and curated learning series — all distilled from thousands of sources into reads you'll actually finish." }
+      },
+      {
+        "@type": "Question",
+        "name": "Who is QuickyWiki for?",
+        "acceptedAnswer": { "@type": "Answer", "text": "QuickyWiki is built for busy professionals, students, and curious minds who want to keep learning every day without spending hours reading." }
+      },
+      {
+        "@type": "Question",
+        "name": "How does QuickyWiki work?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Pick the topics you care about and get a fresh set of curated reads every morning. You can also request an on-demand summary of any topic instantly, or follow a curated series for structured deep dives." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is QuickyWiki free?",
+        "acceptedAnswer": { "@type": "Answer", "text": "QuickyWiki comes with a 3-day free trial so you can explore everything before committing. After the trial, a subscription keeps your daily reads, on-demand summaries, and series coming." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is QuickyWiki available on iOS and Android?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes — QuickyWiki launches on both the App Store and Google Play simultaneously." }
+      },
+      {
+        "@type": "Question",
+        "name": "How is QuickyWiki different from Wikipedia?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Wikipedia is a reference encyclopedia you go to when you need to look something up. QuickyWiki brings curated, digestible reads to you daily so you learn continuously without searching." }
+      }
+    ]
+  }
+  </script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -526,12 +564,91 @@
       line-height: 1.65;
     }
 
+    /* ── FAQ SECTION ───────────────────────────────────── */
+    .faq {
+      position: relative; z-index: 1;
+      padding: 0 48px 112px;
+    }
+    .faq-inner {
+      max-width: 680px; margin: 0 auto;
+      display: flex; flex-direction: column; align-items: center;
+    }
+    .faq-eyebrow {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: rgba(255,255,255,0.7);
+      border: 1px solid var(--border);
+      border-radius: 9999px;
+      padding: 5px 16px 5px 10px;
+      margin-bottom: 22px;
+      backdrop-filter: blur(8px);
+      font-size: 12px; font-weight: 500; color: var(--text3);
+      letter-spacing: 0.04em; text-transform: uppercase;
+    }
+    .faq-eyebrow-line { width: 16px; height: 1.5px; background: var(--text3); border-radius: 9999px; }
+    .faq-heading {
+      font-family: var(--fd);
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 500; letter-spacing: -0.025em; line-height: 1.1;
+      color: var(--text); text-align: center;
+      margin-bottom: 48px;
+    }
+    .faq-heading em { font-style: italic; color: var(--green); }
+
+    .faq-list { width: 100%; display: flex; flex-direction: column; gap: 8px; }
+
+    .faq-item {
+      background: rgba(255,255,255,0.58);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border: 1px solid rgba(255,255,255,0.80);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+      opacity: 0; transform: translateY(20px);
+      transition: border-color 0.2s;
+    }
+    .faq-item.visible {
+      opacity: 1; transform: translateY(0);
+      transition: opacity 0.55s var(--spring), transform 0.55s var(--spring), border-color 0.2s;
+    }
+    .faq-item.open { border-color: rgba(0,105,62,0.18); }
+
+    .faq-q {
+      width: 100%; display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; padding: 20px 22px;
+      background: none; border: none; cursor: pointer;
+      font-family: var(--fu); font-size: 15px; font-weight: 600;
+      color: var(--text); text-align: left; line-height: 1.4;
+    }
+    .faq-q:hover { color: var(--green); }
+    .faq-icon {
+      width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0;
+      background: var(--green-s);
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s, transform 0.3s var(--spring);
+    }
+    .faq-item.open .faq-icon { background: var(--green); transform: rotate(45deg); }
+    .faq-icon svg { transition: stroke 0.2s; }
+    .faq-item.open .faq-icon svg path { stroke: #fff; }
+
+    .faq-a {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.4s var(--ease-out), padding 0.3s;
+      padding: 0 22px;
+    }
+    .faq-a-inner {
+      font-size: 14.5px; color: var(--text2); line-height: 1.7;
+      padding-bottom: 20px;
+    }
+    .faq-item.open .faq-a { max-height: 200px; }
+
     /* ── RESPONSIVE ─────────────────────────────────────── */
     @media (max-width: 900px) {
       nav { padding: 0 16px; }
       .nav-links { display: none; }
       .hero { padding: 62px 24px 0; }
       .features { padding: 72px 24px 80px; }
+      .faq { padding: 0 24px 80px; }
     }
     @media (max-width: 600px) {
       .phones-showcase { flex-direction: column; align-items: center; gap: 48px; }
@@ -769,6 +886,71 @@
   </div>
 </section>
 
+<!-- FAQ -->
+<section class="faq">
+  <div class="faq-inner">
+
+    <div class="faq-eyebrow">
+      <span class="faq-eyebrow-line"></span>
+      FAQ
+    </div>
+
+    <h2 class="faq-heading">Got <em>questions?</em></h2>
+
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-q">
+          What is QuickyWiki?
+          <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="#00693E" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">QuickyWiki is a mobile app that delivers daily 5-minute reads, on-demand topic summaries, and curated learning series — all distilled from thousands of sources into reads you'll actually finish.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          Who is QuickyWiki for?
+          <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="#00693E" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">QuickyWiki is built for busy professionals, students, and curious minds who want to keep learning every day without spending hours reading. If you care about staying sharp but don't have the time, this is for you.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          How does QuickyWiki work?
+          <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="#00693E" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">Pick the topics you care about and get a fresh set of curated reads every morning. You can also request an on-demand summary of any topic instantly, or follow a curated series for structured deep dives — one bite at a time.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          Is QuickyWiki free?
+          <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="#00693E" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">QuickyWiki comes with a 3-day free trial so you can explore everything before committing. After the trial, a subscription keeps your daily reads, on-demand summaries, and series coming.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          Is QuickyWiki available on iOS and Android?
+          <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="#00693E" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">Yes — QuickyWiki launches on both the App Store and Google Play simultaneously, so you're covered whether you're on iPhone or Android.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          How is QuickyWiki different from Wikipedia?
+          <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="#00693E" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">Wikipedia is a reference encyclopedia — you go to it when you need to look something up. QuickyWiki brings curated, digestible reads to you daily, so you learn continuously without having to go searching.</div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <script>
 (function() {
   const canvas = document.getElementById('particles');
@@ -872,6 +1054,31 @@
     e.preventDefault();
     form.style.display    = 'none';
     success.style.display = 'flex';
+  });
+})();
+
+(function() {
+  // FAQ accordion
+  document.querySelectorAll('.faq-item').forEach(function(item) {
+    item.querySelector('.faq-q').addEventListener('click', function() {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(function(o) { o.classList.remove('open'); });
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  // FAQ scroll reveal
+  const faqObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        setTimeout(function() { entry.target.classList.add('visible'); }, entry.target.dataset.delay || 0);
+        faqObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.faq-item').forEach(function(item, i) {
+    item.dataset.delay = i * 60;
+    faqObserver.observe(item);
   });
 })();
 
