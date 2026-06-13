@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>404 Not Found</title>
+</head>
+<body>
+  <script>
+    const path = window.location.pathname;
+    if (path.startsWith('/series/') || path.startsWith('/article/')) {
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+      window.location.replace(isIOS
+        ? 'https://apps.apple.com/app/id YOUR_IOS_APP_ID'
+        : 'https://play.google.com/store/apps/details?id=com.quickywiki.app');
+    }
+  </script>
+</body>
+</html>
