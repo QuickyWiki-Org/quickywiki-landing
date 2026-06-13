@@ -7,7 +7,7 @@
 <body>
   <script>
     const path = window.location.pathname;
-    if (path.startsWith('/series/') || path.startsWith('/article/')) {
+    if (path.startsWith('/series/') || path.startsWith('/quicky/')) {
       const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
       window.location.replace(isIOS
         ? 'https://apps.apple.com/app/id YOUR_IOS_APP_ID'
