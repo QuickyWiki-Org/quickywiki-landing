@@ -1,0 +1,13 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["4AC3RB5K6Z.Swift.QuickyWiki"],
+        "components": [
+          { "/": "/quicky/*", "comment": "Summary share links" },
+          { "/": "/series/*", "comment": "Series share links" }
+        ]
+      }
+    ]
+  }
+}
