@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QuickyWiki — The smartest 5 minutes of your day</title>
+  <meta name="description" content="QuickyWiki turns the world's knowledge into beautiful 5-minute reads. Daily digests, curated series, and an exquisite reading experience — on iOS and Android." />
+  <meta property="og:title" content="QuickyWiki — The smartest 5 minutes of your day" />
+  <meta property="og:description" content="Daily 5-minute reads distilled from thousands of sources. Try the reading experience right in your browser." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%23141312'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='36' fill='%23F6F4EE' text-anchor='middle'%3EQ%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=Literata:opsz,wght@7..72,400;7..72,500;7..72,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ████ NAV ████ -->
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a class="island island--brand" href="#top" aria-label="QuickyWiki home">
+        <span class="qmark" aria-hidden="true">Q</span>
+        <span class="nav__name">Quicky<em>Wiki</em></span>
+      </a>
+      <nav class="island island--links" aria-label="Primary">
+        <a href="#features">Features</a>
+        <a href="#reader">Try it</a>
+        <a href="#ritual">Daily digest</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <div class="nav__right">
+        <a class="island island--cta" href="#get">Get the app</a>
+        <button class="island island--burger" id="burger" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="nav__sheet" id="navSheet">
+      <a href="#features">Features</a>
+      <a href="#reader">Try it</a>
+      <a href="#ritual">Daily digest</a>
+      <a href="#faq">FAQ</a>
+      <a class="btn btn--ink" href="#get">Get the app</a>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ████ HERO ████ -->
+    <section class="hero">
+      <div class="hero__bg" aria-hidden="true">
+        <div class="blob blob--a"></div>
+        <div class="blob blob--b"></div>
+        <div class="blob blob--c"></div>
+        <div class="hero__q" aria-hidden="true"></div>
+        <div class="grain"></div>
+      </div>
+
+      <div class="hero__inner">
+        <div class="hero__copy">
+          <p class="eyebrow reveal"><span class="dot"></span> Now on iOS &amp; Android</p>
+          <h1 class="hero__title" id="heroTitle">
+            The smartest <em>5&nbsp;minutes</em> of your day.
+          </h1>
+          <p class="hero__sub reveal" style="--d:.45s">
+            Daily 5-minute reads, on-demand topic summaries, and curated learning
+            series — distilled from thousands of sources into beautiful reads
+            you'll actually finish.
+          </p>
+          <div class="hero__cta reveal" style="--d:.6s">
+            <a class="store" href="#get" aria-label="Download on the App Store">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.05 12.54c-.03-2.6 2.12-3.85 2.22-3.91-1.21-1.77-3.09-2.01-3.76-2.04-1.6-.16-3.12.94-3.93.94-.81 0-2.06-.92-3.39-.89-1.74.03-3.35 1.01-4.25 2.57-1.81 3.15-.46 7.81 1.3 10.36.86 1.25 1.89 2.65 3.24 2.6 1.3-.05 1.79-.84 3.36-.84 1.57 0 2.01.84 3.39.81 1.4-.02 2.29-1.27 3.15-2.53.99-1.45 1.4-2.85 1.42-2.92-.03-.01-2.72-1.04-2.75-4.15zM14.46 4.9c.72-.87 1.2-2.08 1.07-3.29-1.03.04-2.28.69-3.02 1.56-.66.77-1.24 2-1.09 3.18 1.15.09 2.33-.58 3.04-1.45z"/></svg>
+              <span><small>Download on the</small>App&nbsp;Store</span>
+            </a>
+            <a class="store" href="#get" aria-label="Get it on Google Play">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.6 1.8c-.36.38-.57.96-.57 1.71v17c0 .75.21 1.33.58 1.7l.09.08L13.2 12.8v-.21L3.7 1.71l-.1.09zm12.78 14.18L13.2 12.8v-.21l3.18-3.18 3.83 2.18c1.09.62 1.09 1.63 0 2.25l-3.83 2.14zM4.4 22.5c.36.15.84.1 1.36-.2l11.3-6.42-2.66-2.66L4.4 22.5zM4.4 1.5l10 9.28 2.66-2.66L5.76 1.7c-.52-.3-1-.34-1.36-.2z"/></svg>
+              <span><small>Get it on</small>Google&nbsp;Play</span>
+            </a>
+          </div>
+          <form class="hero__wait reveal" style="--d:.75s" id="heroWait" novalidate>
+            <input type="email" required placeholder="Or join the launch list — your email" aria-label="Email address" />
+            <button class="btn btn--ink" type="submit">Notify me</button>
+            <p class="form__ok" hidden>You're on the list! We'll be in touch. ✦</p>
+          </form>
+        </div>
+
+        <div class="hero__visual reveal" style="--d:.35s">
+          <div class="phone phone--hero tilt" data-tilt>
+            <div class="phone__screen">
+              <img src="assets/app-foryou.png" alt="QuickyWiki For You feed showing daily picks like Guernica and Voyager 1" />
+            </div>
+          </div>
+          <div class="float float--card float--1">
+            <span class="float__emoji">🛰️</span>
+            <span><strong>Voyager 1</strong><small>10 facts · 17 jargons</small></span>
+          </div>
+          <div class="float float--card float--2">
+            <span class="float__emoji">📖</span>
+            <span><strong>Voynich manuscript</strong><small>2 min read</small></span>
+          </div>
+          <div class="float float--pill float--3">✦ Daily Quickies, every morning</div>
+          <div class="float float--pill float--4">🏁 Iconic Performance Cars — series</div>
+        </div>
+      </div>
+
+      <a class="hero__scroll" href="#marquee" aria-label="Scroll to content">
+        <span></span>
+      </a>
+    </section>
+
+    <!-- ████ MARQUEE ████ -->
+    <div class="marquee" id="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <span>Fermi paradox ✦ Voyager 1 ✦ Guernica ✦ Semiconductors ✦ Porsche 911 GT3 ✦ Voynich manuscript ✦ Dyatlov Pass ✦ Heliopause ✦ Pale Blue Dot ✦ Nissan Skyline GT-R ✦ The Golden Record ✦ Quantum tunnelling ✦ </span>
+        <span>Fermi paradox ✦ Voyager 1 ✦ Guernica ✦ Semiconductors ✦ Porsche 911 GT3 ✦ Voynich manuscript ✦ Dyatlov Pass ✦ Heliopause ✦ Pale Blue Dot ✦ Nissan Skyline GT-R ✦ The Golden Record ✦ Quantum tunnelling ✦ </span>
+      </div>
+    </div>
+
+    <!-- ████ FEATURES ████ -->
+    <section class="features" id="features">
+      <div class="wrap">
+        <p class="eyebrow reveal"><span class="dot"></span> What's inside</p>
+        <h2 class="h2 reveal">An encyclopedia,<br/><em>reimagined as a ritual.</em></h2>
+        <p class="lede reveal">Everything on QuickyWiki is built around one promise: deep curiosity, shallow time commitment.</p>
+
+        <div class="feat__grid">
+          <article class="feat feat--tall reveal">
+            <div class="feat__phone phone">
+              <div class="phone__screen"><img src="assets/app-foryou.png" alt="For You tab with Your Daily Quickies" loading="lazy" /></div>
+            </div>
+            <div class="feat__text">
+              <span class="feat__tag">For You</span>
+              <h3>Daily Quickies, picked for you</h3>
+              <p>Fresh releases based on your interests land every morning — art, engineering, mysteries, history. A new reason to open the app daily.</p>
+            </div>
+          </article>
+
+          <article class="feat reveal" style="--d:.1s">
+            <div class="feat__phone phone">
+              <div class="phone__screen"><img src="assets/app-explore.png" alt="Explore tab with browsable categories" loading="lazy" /></div>
+            </div>
+            <div class="feat__text">
+              <span class="feat__tag feat__tag--green">Explore</span>
+              <h3>Wander the whole map</h3>
+              <p>Browse categories from Tech to Space, search any topic, and get a crisp summary on demand — no rabbit-hole tabs required.</p>
+            </div>
+          </article>
+
+          <article class="feat reveal" style="--d:.2s">
+            <div class="feat__phone phone">
+              <div class="phone__screen"><img src="assets/app-series-detail.png" alt="Iconic Performance Cars series with chapters" loading="lazy" /></div>
+            </div>
+            <div class="feat__text">
+              <span class="feat__tag feat__tag--gold">Series</span>
+              <h3>Curated series, chapter by chapter</h3>
+              <p>Multi-part journeys through a theme — like <em>Iconic Performance Cars</em>, from the Porsche 911 GT3 to Nissan's Godzilla. Two minutes per chapter.</p>
+            </div>
+          </article>
+
+          <article class="feat feat--wide reveal" style="--d:.15s">
+            <div class="feat__phone phone">
+              <div class="phone__screen"><img src="assets/app-voyager.png" alt="Voyager 1 topic cover with 10 facts and 17 jargons" loading="lazy" /></div>
+            </div>
+            <div class="feat__text">
+              <span class="feat__tag feat__tag--ink">Reader</span>
+              <h3>A reader that respects your attention</h3>
+              <p>Every topic opens as a paged, magazine-grade read: key facts, jargon explained in place, your fonts, your theme. Don't take our word for it — <a href="#reader">try it below</a>.</p>
+              <ul class="ticks">
+                <li>10 essential facts per topic</li>
+                <li>Jargon decoded as you read</li>
+                <li>Light, sepia &amp; midnight themes</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ████ INTERACTIVE READER ████ -->
+    <section class="readerSec" id="reader">
+      <div class="readerSec__stars" aria-hidden="true"></div>
+      <div class="wrap">
+        <p class="eyebrow eyebrow--light reveal"><span class="dot dot--gold"></span> No download needed</p>
+        <h2 class="h2 h2--light reveal">Take it for a spin.<br/><em>Read “Voyager 1” right here.</em></h2>
+        <p class="lede lede--light reveal">This is the actual QuickyWiki reading experience — pages, themes, fonts, jargon and all. Swipe up, click the arrows, or use your keyboard.</p>
+
+        <div class="readerWrap reveal">
+        <div class="reader" id="qwReader" data-theme="paper" data-font="serif" data-size="2">
+          <div class="reader__screen" id="rScreen">
+
+          <!-- phone status bar -->
+          <div class="reader__status" aria-hidden="true">
+            <span class="reader__time">9:41</span>
+            <span class="reader__notch"></span>
+            <svg class="reader__statusIcons" viewBox="0 0 50 12" aria-hidden="true">
+              <rect x="0" y="7" width="3" height="5" rx="1"/>
+              <rect x="5" y="5" width="3" height="7" rx="1"/>
+              <rect x="10" y="3" width="3" height="9" rx="1"/>
+              <rect x="15" y="1" width="3" height="11" rx="1"/>
+              <rect x="24" y="1.5" width="19" height="9" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.2"/>
+              <rect x="26" y="3.5" width="12" height="5" rx="1"/>
+              <rect x="44.5" y="4" width="2" height="4" rx="1"/>
+            </svg>
+          </div>
+
+          <!-- app-style header islands -->
+          <div class="reader__head">
+            <span class="risland risland--circle" aria-hidden="true">‹</span>
+            <span class="risland reader__title">Voyager 1</span>
+            <span class="risland risland--circle" aria-hidden="true">♡</span>
+          </div>
+
+          <!-- progress -->
+          <div class="reader__progress"><div class="reader__progressFill" id="rProgress"></div></div>
+
+          <!-- pages -->
+          <div class="reader__stage" id="rStage" tabindex="0" aria-live="polite">
+
+            <article class="rpage is-current" data-page="cover">
+              <div class="rcover">
+                <div class="rcover__sky"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><div class="rcover__probe">🛰️</div></div>
+                <h3 class="rcover__title">Voyager 1</h3>
+                <p class="rcover__sub">The farthest thing we've ever made</p>
+                <div class="rcover__chips">
+                  <span>💡 10 facts</span><span>📖 17 jargons</span><span>⏱ 5 min</span>
+                </div>
+                <p class="rcover__hint">Swipe <strong>up</strong> to start reading ↓</p>
+              </div>
+            </article>
+
+            <article class="rpage" data-page="1">
+              <h3>Why Voyager 1 still captures our imagination</h3>
+              <p>Launched on September 5, 1977, <strong>Voyager 1</strong> has become the most distant human-made object, a radioed ambassador at the edge of the Sun's influence. As of March 2026 it sits about <em>172.59 AU</em> — 25.8 billion km — from Earth, and is projected to be one full <button class="jargon" data-def="The distance light travels in one day: about 25.9 billion kilometres. At that range, a radio signal takes 24 hours to arrive.">light-day</button> away in November 2026.</p>
+              <p>Its journey transformed from a planetary explorer into the first probe to cross the boundary between the Solar System and <button class="jargon" data-def="The space between star systems, filled with thin gas, dust and cosmic rays rather than true emptiness.">interstellar space</button>.</p>
+            </article>
+
+            <article class="rpage" data-page="2">
+              <h3>One launch window in 176 years</h3>
+              <p>Voyager 1 exists because of a planetary coincidence. In the late 1970s, Jupiter, Saturn, Uranus and Neptune aligned in a way that happens once every <em>176 years</em> — letting a single spacecraft hop between them using <button class="jargon" data-def="A manoeuvre that steals a tiny bit of a planet's orbital momentum to fling a spacecraft faster and farther, like a slingshot.">gravity assists</button>.</p>
+              <p>Each flyby flung the probe faster. By Saturn, Voyager 1 was travelling over 61,000 km/h — fast enough to escape the Sun's pull entirely, on a one-way trip with no brakes and no return ticket.</p>
+            </article>
+
+            <article class="rpage" data-page="3">
+              <h3>Crossing the invisible border</h3>
+              <p>In August 2012, instruments registered something historic: the solar wind died away and <button class="jargon" data-def="High-energy particles from outside the Solar System, produced by supernovae and other violent cosmic events.">galactic cosmic rays</button> surged. Voyager 1 had crossed the <button class="jargon" data-def="The outer boundary where the Sun's solar wind is finally stopped by the pressure of interstellar gas — the edge of the Sun's 'bubble'.">heliopause</button>.</p>
+              <p>It became the first human object to sail beyond the Sun's protective bubble — a moment scientists had theorized about for half a century, confirmed by a 35-year-old machine with less memory than a car key.</p>
+            </article>
+
+            <article class="rpage" data-page="4">
+              <h3>The Golden Record</h3>
+              <p>Bolted to its side is a gold-plated copper disc: greetings in 55 languages, the sound of rain, whale song, Chuck Berry, Bach — a mixtape for anyone, or anything, that might find it.</p>
+              <p>Carl Sagan's team designed the cover with a pulsar map locating Earth, and electroplated a sample of <button class="jargon" data-def="A radioactive element with a 4.5-billion-year half-life; its decay acts as a clock telling finders how long the probe has travelled.">uranium-238</button> so its decay could serve as a cosmic clock. The record's case should survive for over a billion years.</p>
+            </article>
+
+            <article class="rpage" data-page="5">
+              <h3>The Pale Blue Dot</h3>
+              <p>On Valentine's Day 1990, at Sagan's urging, engineers turned Voyager 1's camera homeward one last time. From 6 billion km away, Earth appeared as a single pale pixel suspended in a sunbeam.</p>
+              <blockquote>“Look again at that dot. That's here. That's home. That's us.”<cite>— Carl Sagan</cite></blockquote>
+              <p>It remains the most distant portrait of Earth ever taken — and the reason the camera was shut down forever afterwards, to save power.</p>
+            </article>
+
+            <article class="rpage" data-page="facts">
+              <h3>Quick facts</h3>
+              <ul class="rfacts">
+                <li><span>🚀</span><div><strong>Launched</strong> Sept 5, 1977 — 16 days <em>after</em> its twin, Voyager 2</div></li>
+                <li><span>📡</span><div><strong>Signal delay</strong> ~24 hours one-way, whispering at 160 bits/sec</div></li>
+                <li><span>🔋</span><div><strong>Power</strong> a plutonium heart losing ~4 watts every year</div></li>
+                <li><span>🌌</span><div><strong>Next stop</strong> in ~40,000 years it drifts near star Gliese 445</div></li>
+              </ul>
+            </article>
+
+            <article class="rpage" data-page="end">
+              <div class="rend">
+                <span class="rend__q">Q</span>
+                <h3>That was one quickie.<br/>Thousands more are waiting.</h3>
+                <p>Daily picks, curated series, jargon decoded — all in your pocket.</p>
+                <a class="btn btn--ink" href="#get">Get QuickyWiki free</a>
+                <button class="rend__again" id="rRestart">↻ Read again</button>
+              </div>
+            </article>
+          </div>
+
+          <!-- app-style bottom islands -->
+          <div class="reader__foot">
+            <div class="risland risland--seg" role="group" aria-label="Reader font and text size">
+              <button class="seg__btn is-on" data-rfont="serif" title="Serif font" style="font-family:'Literata',serif">Aa</button>
+              <button class="seg__btn" data-rfont="sans" title="Sans-serif font" style="font-family:'Inter',sans-serif">Aa</button>
+              <span class="risland__sep"></span>
+              <button class="seg__btn" data-rsize="-1" title="Smaller text">A−</button>
+              <button class="seg__btn" data-rsize="1" title="Larger text">A+</button>
+            </div>
+            <span class="reader__count" id="rCount">1 of 8</span>
+            <div class="risland risland--seg" role="group" aria-label="Reader theme">
+              <button class="seg__btn is-on" data-rtheme="paper" title="Paper theme">☀️</button>
+              <button class="seg__btn" data-rtheme="sepia" title="Sepia theme">📜</button>
+              <button class="seg__btn" data-rtheme="midnight" title="Midnight theme">🌙</button>
+            </div>
+          </div>
+
+          <div class="reader__tooltip" id="rTip" role="tooltip" hidden>
+            <p></p><span class="reader__tipTail"></span>
+          </div>
+          </div><!-- /reader__screen -->
+        </div><!-- /reader -->
+
+        <!-- vertical page rail -->
+        <div class="reader__rail">
+          <button class="rbtn" id="rPrev" aria-label="Previous page">↑</button>
+          <div class="reader__dots" id="rDots"></div>
+          <button class="rbtn rbtn--primary" id="rNext" aria-label="Next page">↓</button>
+        </div>
+        </div><!-- /readerWrap -->
+
+        <p class="reader__caption reveal">Themes, fonts and jargon tooltips — exactly as they work in the app.</p>
+      </div>
+    </section>
+
+    <!-- ████ DAILY RITUAL ████ -->
+    <section class="ritual" id="ritual">
+      <div class="wrap">
+        <p class="eyebrow reveal"><span class="dot"></span> The daily digest</p>
+        <h2 class="h2 reveal">Your day, <em>punctuated by wonder.</em></h2>
+        <div class="ritual__grid">
+          <div class="ritual__timeline reveal">
+            <div class="tl">
+              <div class="tl__item">
+                <span class="tl__time">8:04 AM</span>
+                <div class="tl__card">
+                  <span class="tl__icon">☕️</span>
+                  <div><strong>Your Daily Quickies are ready</strong><p>Guernica · Semiconductors — picked from your interests.</p></div>
+                </div>
+              </div>
+              <div class="tl__item">
+                <span class="tl__time">12:30 PM</span>
+                <div class="tl__card">
+                  <span class="tl__icon">🍜</span>
+                  <div><strong>Lunch-break read</strong><p>“Fermi paradox” — 5 minutes, 9 facts, zero doomscrolling.</p></div>
+                </div>
+              </div>
+              <div class="tl__item">
+                <span class="tl__time">9:45 PM</span>
+                <div class="tl__card">
+                  <span class="tl__icon">🌙</span>
+                  <div><strong>Series, chapter 3 of 4</strong><p>Iconic Performance Cars · Nissan Skyline GT-R. Midnight theme on.</p></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="ritual__phone reveal" style="--d:.15s">
+            <div class="phone tilt" data-tilt>
+              <div class="phone__screen"><img src="assets/app-series.png" alt="Series tab in QuickyWiki" loading="lazy" /></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ████ STATS ████ -->
+    <section class="stats">
+      <div class="wrap stats__row">
+        <div class="stat reveal"><strong data-count="5" data-suffix=" min">0</strong><span>per read, never more</span></div>
+        <div class="stat reveal" style="--d:.1s"><strong data-count="1000" data-suffix="s">0</strong><span>of topics &amp; growing</span></div>
+        <div class="stat reveal" style="--d:.2s"><strong data-count="10" data-suffix="">0</strong><span>key facts per topic</span></div>
+        <div class="stat reveal" style="--d:.3s"><strong data-count="3" data-suffix="-day">0</strong><span>free trial, no strings</span></div>
+      </div>
+    </section>
+
+    <!-- ████ FAQ ████ -->
+    <section class="faq" id="faq">
+      <div class="wrap wrap--narrow">
+        <p class="eyebrow reveal"><span class="dot"></span> Questions, answered</p>
+        <h2 class="h2 reveal">Frequently asked, <em>quickly answered.</em></h2>
+        <div class="faq__list reveal">
+          <details>
+            <summary>What exactly is QuickyWiki?<span class="faq__plus"></span></summary>
+            <p>A reading app that distills encyclopedic knowledge into beautiful 5-minute summaries — with daily digests, on-demand topics, and curated multi-chapter series.</p>
+          </details>
+          <details>
+            <summary>Who is it for?<span class="faq__plus"></span></summary>
+            <p>Curious people with full calendars: commuters, students, lifelong learners — anyone who loves knowing things more than scrolling things.</p>
+          </details>
+          <details>
+            <summary>How is this different from just using Wikipedia?<span class="faq__plus"></span></summary>
+            <p>Wikipedia is a reference; QuickyWiki is a reading experience. We distill, structure and design each topic into a paged read with key facts and jargon explained inline — finished in five minutes, remembered for longer.</p>
+          </details>
+          <details>
+            <summary>How much does it cost?<span class="faq__plus"></span></summary>
+            <p>You get a 3-day free trial with full access. After that, a simple subscription keeps the daily digests and series coming.</p>
+          </details>
+          <details>
+            <summary>Which platforms are supported?<span class="faq__plus"></span></summary>
+            <p>QuickyWiki is available on both iOS and Android, with your library and progress synced.</p>
+          </details>
+          <details>
+            <summary>Can I choose what I read about?<span class="faq__plus"></span></summary>
+            <p>Absolutely. Pick your interests for the daily digest, search any topic on demand, and follow series that match your curiosity.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ████ FINAL CTA ████ -->
+    <section class="cta" id="get">
+      <div class="cta__bg" aria-hidden="true"><div class="cta__q"></div><div class="grain"></div></div>
+      <div class="wrap cta__inner">
+        <h2 class="h2 h2--light reveal">Five minutes from now,<br/><em>you'll know something wonderful.</em></h2>
+        <div class="hero__cta reveal" style="--d:.15s">
+          <a class="store store--light" href="#" aria-label="Download on the App Store">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.05 12.54c-.03-2.6 2.12-3.85 2.22-3.91-1.21-1.77-3.09-2.01-3.76-2.04-1.6-.16-3.12.94-3.93.94-.81 0-2.06-.92-3.39-.89-1.74.03-3.35 1.01-4.25 2.57-1.81 3.15-.46 7.81 1.3 10.36.86 1.25 1.89 2.65 3.24 2.6 1.3-.05 1.79-.84 3.36-.84 1.57 0 2.01.84 3.39.81 1.4-.02 2.29-1.27 3.15-2.53.99-1.45 1.4-2.85 1.42-2.92-.03-.01-2.72-1.04-2.75-4.15zM14.46 4.9c.72-.87 1.2-2.08 1.07-3.29-1.03.04-2.28.69-3.02 1.56-.66.77-1.24 2-1.09 3.18 1.15.09 2.33-.58 3.04-1.45z"/></svg>
+            <span><small>Download on the</small>App&nbsp;Store</span>
+          </a>
+          <a class="store store--light" href="#" aria-label="Get it on Google Play">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.6 1.8c-.36.38-.57.96-.57 1.71v17c0 .75.21 1.33.58 1.7l.09.08L13.2 12.8v-.21L3.7 1.71l-.1.09zm12.78 14.18L13.2 12.8v-.21l3.18-3.18 3.83 2.18c1.09.62 1.09 1.63 0 2.25l-3.83 2.14zM4.4 22.5c.36.15.84.1 1.36-.2l11.3-6.42-2.66-2.66L4.4 22.5zM4.4 1.5l10 9.28 2.66-2.66L5.76 1.7c-.52-.3-1-.34-1.36-.2z"/></svg>
+            <span><small>Get it on</small>Google&nbsp;Play</span>
+          </a>
+        </div>
+        <form class="cta__wait reveal" style="--d:.3s" id="ctaWait" novalidate>
+          <input type="email" required placeholder="Email me when new series drop" aria-label="Email address" />
+          <button class="btn btn--paper" type="submit">Join the list</button>
+          <p class="form__ok" hidden>You're on the list! We'll be in touch. ✦</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ████ FOOTER ████ -->
+  <footer class="footer">
+    <div class="wrap footer__inner">
+      <a class="nav__brand" href="#top"><span class="qmark qmark--paper">Q</span><span class="nav__name">Quicky<em>Wiki</em></span></a>
+      <nav class="footer__links" aria-label="Footer">
+        <a href="#features">Features</a>
+        <a href="#reader">Try the reader</a>
+        <a href="#faq">FAQ</a>
+        <a href="mailto:hello@quickywiki.app">Contact</a>
+      </nav>
+      <p class="footer__fine">© 2026 QuickyWiki. Made for curious minds. Summaries are crafted from openly licensed sources, including Wikipedia.</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

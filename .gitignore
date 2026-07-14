@@ -1,0 +1,10 @@
+# Local Firebase config — contains API keys and password hash. NEVER commit.
+_config.js
+
+# IDE
+.vs/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db

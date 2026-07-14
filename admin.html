@@ -1,0 +1,882 @@
+<!-- _config.js is required and must never be committed -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>QuickyWiki Admin</title>
+  <link rel="icon" type="image/png" href="logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300..700&family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #0E0E0C;
+      --bg2:      #121210;
+      --surf:     #1C1B19;
+      --surf2:    #242422;
+      --surf3:    #2D2D2B;
+      --green:    #00A862;
+      --green-d:  #00693E;
+      --green-s:  rgba(0,168,98,0.12);
+      --red:      #E05050;
+      --amber:    #E89005;
+      --text:     #F0EDE8;
+      --text2:    #A8A49E;
+      --text3:    #6B6860;
+      --border:   rgba(255,255,255,0.07);
+      --border2:  rgba(255,255,255,0.13);
+      --fu:       'DM Sans', system-ui, sans-serif;
+      --fd:       'Lora', Georgia, serif;
+      --spring:   cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    html, body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--fu);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── SKELETON ── */
+    @keyframes shimmer {
+      0%   { background-position: -600px 0; }
+      100% { background-position: 600px 0; }
+    }
+    .skeleton {
+      background: linear-gradient(90deg, var(--surf2) 25%, var(--surf3) 50%, var(--surf2) 75%);
+      background-size: 1200px 100%;
+      animation: shimmer 1.6s infinite linear;
+      border-radius: 6px;
+      display: inline-block;
+    }
+
+    /* ════════════════════════════════════════════
+       LOGIN SCREEN
+    ════════════════════════════════════════════ */
+    #loginScreen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background:
+        radial-gradient(ellipse 70% 55% at 72% 15%, rgba(0,168,98,0.10) 0%, transparent 60%),
+        radial-gradient(ellipse 55% 45% at 18% 85%, rgba(0,105,62,0.08) 0%, transparent 60%),
+        var(--bg);
+    }
+
+    .login-card {
+      width: 100%;
+      max-width: 420px;
+      background: var(--surf);
+      border: 1px solid var(--border2);
+      border-radius: 24px;
+      padding: 44px 40px 40px;
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.04),
+        0 32px 80px rgba(0,0,0,0.55),
+        0 8px 28px rgba(0,0,0,0.32);
+      animation: cardIn 0.5s var(--spring) both;
+    }
+    @keyframes cardIn {
+      from { opacity: 0; transform: translateY(20px) scale(0.97); }
+      to   { opacity: 1; transform: translateY(0)    scale(1); }
+    }
+    @keyframes shake {
+      0%,100% { transform: translateX(0); }
+      20%     { transform: translateX(-8px); }
+      40%     { transform: translateX(8px); }
+      60%     { transform: translateX(-5px); }
+      80%     { transform: translateX(5px); }
+    }
+    .login-card.shake { animation: shake 0.42s var(--spring); }
+
+    .login-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+    .login-brand-img {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      overflow: hidden;
+      background: var(--surf2);
+      flex-shrink: 0;
+    }
+    .login-brand-img img { width: 100%; height: 100%; object-fit: contain; }
+    .login-brand-name  { font-size: 15px; font-weight: 700; color: var(--text); letter-spacing: -0.01em; }
+    .login-brand-badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--green);
+      background: var(--green-s);
+      border: 1px solid rgba(0,168,98,0.20);
+      border-radius: 4px;
+      padding: 2px 7px;
+      margin-top: 3px;
+    }
+
+    .login-heading {
+      font-family: var(--fd);
+      font-size: 28px;
+      font-weight: 500;
+      letter-spacing: -0.025em;
+      color: var(--text);
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+    .login-heading em { font-style: italic; color: var(--green); }
+    .login-sub {
+      font-size: 14px;
+      color: var(--text2);
+      line-height: 1.65;
+      margin-bottom: 28px;
+    }
+
+    .login-field { position: relative; margin-bottom: 12px; }
+    .login-input {
+      width: 100%;
+      height: 48px;
+      padding: 0 48px 0 16px;
+      background: var(--surf2);
+      border: 1px solid var(--border2);
+      border-radius: 12px;
+      color: var(--text);
+      font-family: var(--fu);
+      font-size: 14.5px;
+      outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .login-input::placeholder { color: var(--text3); }
+    .login-input:focus {
+      border-color: rgba(0,168,98,0.50);
+      box-shadow: 0 0 0 3px rgba(0,168,98,0.12);
+    }
+    .login-eye {
+      position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
+      background: none; border: none; color: var(--text3); cursor: pointer;
+      display: flex; align-items: center; padding: 4px;
+      transition: color 0.15s;
+    }
+    .login-eye:hover { color: var(--text2); }
+
+    .login-error {
+      font-size: 13px; color: var(--red);
+      padding: 10px 14px;
+      background: rgba(224,80,80,0.08);
+      border: 1px solid rgba(224,80,80,0.15);
+      border-radius: 8px;
+      margin-bottom: 12px;
+      display: none;
+    }
+    .login-error.show { display: block; }
+
+    .login-btn {
+      width: 100%; height: 48px;
+      background: var(--green-d);
+      border: none; border-radius: 12px;
+      color: #fff; font-family: var(--fu);
+      font-size: 14.5px; font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.12s, box-shadow 0.15s;
+      box-shadow: 0 4px 20px rgba(0,105,62,0.32), inset 0 1px 0 rgba(255,255,255,0.12);
+      margin-top: 4px;
+    }
+    .login-btn:hover  { background: #004F2E; box-shadow: 0 6px 28px rgba(0,105,62,0.42); }
+    .login-btn:active { transform: scale(0.98); }
+    .login-btn:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
+
+    /* ════════════════════════════════════════════
+       DASHBOARD
+    ════════════════════════════════════════════ */
+    #dashboard { min-height: 100vh; display: none; }
+
+    /* Header */
+    .dash-header {
+      position: sticky; top: 0; z-index: 50;
+      height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 32px;
+      background: rgba(14,14,12,0.88);
+      backdrop-filter: blur(24px) saturate(160%);
+      -webkit-backdrop-filter: blur(24px) saturate(160%);
+      border-bottom: 1px solid var(--border);
+    }
+    .dash-header-left { display: flex; align-items: center; gap: 12px; }
+    .dash-logo { width: 28px; height: 28px; border-radius: 6px; overflow: hidden; }
+    .dash-logo img { width: 100%; height: 100%; object-fit: contain; }
+    .dash-title   { font-size: 15px; font-weight: 600; color: var(--text); letter-spacing: -0.01em; }
+    .dash-title span { color: var(--text3); font-weight: 400; margin-left: 6px; font-size: 13px; }
+
+    .dash-header-right { display: flex; align-items: center; gap: 14px; }
+    .dash-updated { font-size: 12px; color: var(--text3); }
+
+    .logout-btn {
+      display: flex; align-items: center; gap: 6px;
+      padding: 8px 14px;
+      background: var(--surf2);
+      border: 1px solid var(--border2);
+      border-radius: 8px;
+      color: var(--text2); font-family: var(--fu);
+      font-size: 13px; font-weight: 500; cursor: pointer;
+      transition: background 0.12s, color 0.12s;
+    }
+    .logout-btn:hover { background: var(--surf3); color: var(--text); }
+
+    /* Main */
+    .dash-main {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 36px 32px 72px;
+    }
+
+    .section-label {
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.09em; text-transform: uppercase;
+      color: var(--text3);
+      margin-bottom: 14px;
+    }
+
+    /* ── STAT CARDS ── */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+
+    .stat-card {
+      background: var(--surf);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 22px 22px 20px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+    }
+    .stat-card:hover {
+      border-color: var(--border2);
+      box-shadow: 0 6px 28px rgba(0,0,0,0.24);
+      transform: translateY(-1px);
+    }
+    .stat-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 16px; right: 16px; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(0,168,98,0.28), transparent);
+    }
+
+    .stat-icon {
+      width: 36px; height: 36px; border-radius: 10px;
+      background: var(--green-s);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 14px; color: var(--green);
+    }
+    .stat-label {
+      font-size: 11.5px; font-weight: 600;
+      color: var(--text3);
+      text-transform: uppercase; letter-spacing: 0.07em;
+      margin-bottom: 8px;
+    }
+    .stat-value {
+      font-size: 34px; font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.04em;
+      line-height: 1;
+      min-height: 34px;
+    }
+
+    /* ── CHART ── */
+    .chart-section { margin-bottom: 28px; }
+    .chart-card {
+      background: var(--surf);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+    }
+    .chart-card-header {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      margin-bottom: 24px;
+    }
+    .chart-card-title  { font-size: 14px; font-weight: 600; color: var(--text); }
+    .chart-card-sub    { font-size: 12px; color: var(--text3); margin-top: 3px; }
+    .chart-wrap        { position: relative; height: 240px; }
+
+    /* ── TABLES ── */
+    .tables-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .table-card {
+      background: var(--surf);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .table-card-header {
+      padding: 18px 22px 16px;
+      font-size: 14px; font-weight: 600; color: var(--text);
+      border-bottom: 1px solid var(--border);
+    }
+    table { width: 100%; border-collapse: collapse; }
+    thead th {
+      padding: 10px 22px;
+      text-align: left;
+      font-size: 10.5px; font-weight: 600;
+      letter-spacing: 0.07em; text-transform: uppercase;
+      color: var(--text3);
+      background: var(--surf2);
+      border-bottom: 1px solid var(--border);
+    }
+    tbody td {
+      padding: 12px 22px;
+      font-size: 13.5px;
+      color: var(--text2);
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+    }
+    tbody tr:last-child td { border-bottom: none; }
+    tbody tr:hover td { background: rgba(255,255,255,0.025); color: var(--text); }
+
+    .td-rank {
+      width: 36px;
+      font-size: 12px; font-weight: 700;
+      color: var(--text3);
+    }
+    .td-rank.gold   { color: var(--amber); }
+    .td-rank.silver { color: #C0C0C0; }
+    .td-rank.bronze { color: #CD7F32; }
+
+    .td-num {
+      text-align: right;
+      font-size: 13px; font-weight: 600;
+      color: var(--text);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .empty-state {
+      padding: 40px 22px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--text3);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1100px) {
+      .stats-grid  { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 900px) {
+      .stats-grid  { grid-template-columns: repeat(2, 1fr); }
+      .tables-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .dash-header { padding: 0 18px; }
+      .dash-main   { padding: 24px 16px 56px; }
+      .stats-grid  { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .stat-card   { padding: 16px; }
+      .stat-value  { font-size: 26px; }
+      .dash-updated { display: none; }
+      .login-card  { padding: 32px 24px 28px; }
+    }
+    @media (max-width: 380px) {
+      .stats-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ LOGIN SCREEN ══════════════════════════════════════════════════════ -->
+<div id="loginScreen">
+  <div class="login-card" id="loginCard">
+
+    <div class="login-brand">
+      <div class="login-brand-img">
+        <img src="logo.png" alt="QuickyWiki">
+      </div>
+      <div>
+        <div class="login-brand-name">QuickyWiki</div>
+        <div class="login-brand-badge">ADMIN</div>
+      </div>
+    </div>
+
+    <h1 class="login-heading">Welcome <em>back</em></h1>
+    <p class="login-sub">Enter your admin password to access the analytics dashboard.</p>
+
+    <div class="login-error" id="loginError">Incorrect password. Please try again.</div>
+
+    <div class="login-field">
+      <input
+        class="login-input"
+        type="password"
+        id="passwordInput"
+        placeholder="Admin password"
+        autocomplete="current-password"
+      >
+      <button class="login-eye" id="eyeToggle" type="button" aria-label="Toggle password visibility">
+        <svg id="eyeIcon" width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8"/>
+        </svg>
+      </button>
+    </div>
+
+    <button class="login-btn" id="loginBtn">Sign In</button>
+
+  </div>
+</div>
+
+
+<!-- ══ DASHBOARD ═════════════════════════════════════════════════════════ -->
+<div id="dashboard">
+
+  <header class="dash-header">
+    <div class="dash-header-left">
+      <div class="dash-logo"><img src="logo.png" alt=""></div>
+      <div class="dash-title">
+        QuickyWiki
+        <span>Admin Dashboard</span>
+      </div>
+    </div>
+    <div class="dash-header-right">
+      <span class="dash-updated" id="dashUpdated"></span>
+      <button class="logout-btn" id="logoutBtn">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none">
+          <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Logout
+      </button>
+    </div>
+  </header>
+
+  <main class="dash-main">
+
+    <!-- OVERVIEW -->
+    <p class="section-label">Overview</p>
+    <div class="stats-grid" id="statsGrid">
+      <!-- injected by JS -->
+    </div>
+
+    <!-- DAILY CHART -->
+    <div class="chart-section">
+      <p class="section-label">Daily Activity</p>
+      <div class="chart-card">
+        <div class="chart-card-header">
+          <div>
+            <div class="chart-card-title">App Opens</div>
+            <div class="chart-card-sub">Last 7 days</div>
+          </div>
+        </div>
+        <div class="chart-wrap">
+          <div class="skeleton" id="chartSkeleton" style="width:100%;height:100%;border-radius:10px;"></div>
+          <canvas id="dailyChart" style="display:none;position:absolute;inset:0;width:100%!important;height:100%!important;"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- TABLES -->
+    <p class="section-label">Top Content</p>
+    <div class="tables-grid">
+
+      <div class="table-card">
+        <div class="table-card-header">Top 10 Articles</div>
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Title</th>
+              <th style="text-align:right">Views</th>
+            </tr>
+          </thead>
+          <tbody id="articlesBody"></tbody>
+        </table>
+      </div>
+
+      <div class="table-card">
+        <div class="table-card-header">Top 10 Searches</div>
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Query</th>
+              <th style="text-align:right">Count</th>
+            </tr>
+          </thead>
+          <tbody id="searchesBody"></tbody>
+        </table>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+
+<!-- Config loaded first so ANALYTICS_CONFIG is in scope before the module runs -->
+<script src="_config.js"></script>
+<script type="module">
+// ════════════════════════════════════════════════════════════════════════
+// Expected Firestore structure:
+//   analytics/totals          — doc: { appOpens, users, articlesRead,
+//                                      searches, bookmarks, avgReadTimeMinutes }
+//   analytics/totals/daily    — subcollection, each doc: { date:"YYYY-MM-DD", appOpens:N }
+//   topArticles               — collection, each doc: { title:string, views:N }
+//   topSearches               — collection, each doc: { query:string, count:N }
+// ════════════════════════════════════════════════════════════════════════
+
+import { initializeApp }
+  from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
+import { getFirestore, doc, getDoc, collection, getDocs, query, orderBy, limit }
+  from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
+
+// ── SESSION ──────────────────────────────────────────────────────────────
+const AUTH_KEY = 'qw_admin_v1';
+
+function isAuthed()  { return sessionStorage.getItem(AUTH_KEY) === '1'; }
+function setAuthed() { sessionStorage.setItem(AUTH_KEY, '1'); }
+function clearAuth() { sessionStorage.removeItem(AUTH_KEY); }
+
+// ── HASH ─────────────────────────────────────────────────────────────────
+async function sha256hex(text) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+// ── FORMAT ───────────────────────────────────────────────────────────────
+function fmt(n) {
+  if (n == null || isNaN(n)) return '—';
+  if (n >= 1_000_000) return (n / 1_000_000).toFixed(1).replace(/\.0$/, '') + 'M';
+  if (n >= 1_000)     return (n / 1_000).toFixed(1).replace(/\.0$/, '') + 'K';
+  return Number(n).toLocaleString();
+}
+function fmtTime(mins) {
+  if (mins == null || isNaN(mins)) return '—';
+  return Number(mins).toFixed(1) + ' min';
+}
+
+// ── STAT CARD DEFINITIONS ────────────────────────────────────────────────
+const STATS = [
+  {
+    key: 'appOpens', label: 'App Opens', fmt,
+    icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+      <rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>`,
+  },
+  {
+    key: 'users', label: 'Total Users', fmt,
+    icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+      <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      <circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>`,
+  },
+  {
+    key: 'articlesRead', label: 'Articles Read', fmt,
+    icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+      <path d="M4 19.5A2.5 2.5 0 016.5 17H20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>`,
+  },
+  {
+    key: 'searches', label: 'Total Searches', fmt,
+    icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+      <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>`,
+  },
+  {
+    key: 'bookmarks', label: 'Bookmarks', fmt,
+    icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+      <path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>`,
+  },
+  {
+    key: 'avgReadTimeMinutes', label: 'Avg Read Time', fmt: fmtTime,
+    icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>`,
+  },
+];
+
+// ── RENDER: SKELETON CARDS ───────────────────────────────────────────────
+function renderSkeletonCards() {
+  document.getElementById('statsGrid').innerHTML = STATS.map(s => `
+    <div class="stat-card">
+      <div class="stat-icon">${s.icon}</div>
+      <div class="stat-label">${s.label}</div>
+      <div class="stat-value">
+        <span class="skeleton" style="width:88px;height:34px;border-radius:8px;"></span>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ── RENDER: STAT CARDS ───────────────────────────────────────────────────
+function renderCards(data) {
+  document.getElementById('statsGrid').innerHTML = STATS.map(s => `
+    <div class="stat-card">
+      <div class="stat-icon">${s.icon}</div>
+      <div class="stat-label">${s.label}</div>
+      <div class="stat-value">${s.fmt(data[s.key])}</div>
+    </div>
+  `).join('');
+}
+
+// ── RENDER: SKELETON TABLE ───────────────────────────────────────────────
+function renderSkeletonTable(id) {
+  document.getElementById(id).innerHTML = Array.from({length: 10}, (_, i) => `
+    <tr>
+      <td class="td-rank"><span class="skeleton" style="width:16px;height:14px;"></span></td>
+      <td><span class="skeleton" style="width:${110 + (i % 4) * 30}px;height:14px;"></span></td>
+      <td class="td-num"><span class="skeleton" style="width:44px;height:14px;"></span></td>
+    </tr>
+  `).join('');
+}
+
+// ── RENDER: TABLE ────────────────────────────────────────────────────────
+function renderTable(id, rows, labelKey, countKey) {
+  const tbody = document.getElementById(id);
+  if (!rows?.length) {
+    tbody.innerHTML = `<tr><td colspan="3" class="empty-state">No data available</td></tr>`;
+    return;
+  }
+  const rankClass = ['gold', 'silver', 'bronze'];
+  tbody.innerHTML = rows.map((row, i) => `
+    <tr>
+      <td class="td-rank ${rankClass[i] || ''}">${i + 1}</td>
+      <td>${row[labelKey] ?? '—'}</td>
+      <td class="td-num">${fmt(row[countKey])}</td>
+    </tr>
+  `).join('');
+}
+
+// ── RENDER: CHART ────────────────────────────────────────────────────────
+let chart = null;
+function renderChart(days) {
+  document.getElementById('chartSkeleton').style.display = 'none';
+  const canvas = document.getElementById('dailyChart');
+  canvas.style.display = 'block';
+
+  if (chart) { chart.destroy(); chart = null; }
+
+  const labels = days.map(d => {
+    const dt = new Date(d.date + 'T12:00:00');
+    return dt.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+  });
+  const values = days.map(d => d.appOpens ?? 0);
+
+  chart = new Chart(canvas, {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [{
+        data: values,
+        fill: true,
+        borderColor: '#00A862',
+        backgroundColor(ctx) {
+          const { chartArea, ctx: c } = ctx.chart;
+          if (!chartArea) return 'transparent';
+          const g = c.createLinearGradient(0, chartArea.top, 0, chartArea.bottom);
+          g.addColorStop(0, 'rgba(0,168,98,0.24)');
+          g.addColorStop(1, 'rgba(0,168,98,0.00)');
+          return g;
+        },
+        borderWidth: 2,
+        pointBackgroundColor: '#00A862',
+        pointBorderColor: '#1C1B19',
+        pointBorderWidth: 2.5,
+        pointRadius: 4,
+        pointHoverRadius: 6,
+        tension: 0.4,
+      }],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#242422',
+          borderColor: 'rgba(255,255,255,0.10)',
+          borderWidth: 1,
+          titleColor: '#A8A49E',
+          bodyColor: '#F0EDE8',
+          bodyFont: { family: "'DM Sans', system-ui", weight: '600', size: 14 },
+          padding: 12,
+          displayColors: false,
+          callbacks: {
+            title: items => items[0].label,
+            label: item => fmt(item.raw) + ' opens',
+          },
+        },
+      },
+      scales: {
+        x: {
+          grid: { color: 'rgba(255,255,255,0.05)' },
+          border: { display: false },
+          ticks: { color: '#6B6860', font: { family: "'DM Sans', system-ui", size: 11 } },
+        },
+        y: {
+          grid: { color: 'rgba(255,255,255,0.05)' },
+          border: { display: false },
+          ticks: {
+            color: '#6B6860',
+            font: { family: "'DM Sans', system-ui", size: 11 },
+            callback: v => fmt(v),
+          },
+        },
+      },
+    },
+  });
+}
+
+// ── LOAD DATA ────────────────────────────────────────────────────────────
+async function loadData() {
+  const cfg = typeof ANALYTICS_CONFIG !== 'undefined' ? ANALYTICS_CONFIG : null;
+  if (!cfg?.apiKey || cfg.apiKey === 'YOUR_FIREBASE_API_KEY') {
+    document.getElementById('statsGrid').innerHTML = `
+      <div style="grid-column:1/-1;padding:32px;text-align:center;color:var(--text3);font-size:14px;">
+        Firebase not configured. Edit <code style="color:var(--text2)">_config.js</code> with your credentials.
+      </div>`;
+    return;
+  }
+
+  renderSkeletonCards();
+  renderSkeletonTable('articlesBody');
+  renderSkeletonTable('searchesBody');
+
+  const app = initializeApp({ apiKey: cfg.apiKey, authDomain: cfg.authDomain, projectId: cfg.projectId });
+  const db  = getFirestore(app);
+
+  const [totalsRes, dailyRes, articlesRes, searchesRes] = await Promise.allSettled([
+    getDoc(doc(db, 'analytics', 'totals')),
+    getDocs(query(
+      collection(db, 'analytics', 'totals', 'daily'),
+      orderBy('date', 'desc'), limit(7)
+    )),
+    getDocs(query(collection(db, 'topArticles'), orderBy('views', 'desc'), limit(10))),
+    getDocs(query(collection(db, 'topSearches'), orderBy('count', 'desc'), limit(10))),
+  ]);
+
+  // Totals
+  if (totalsRes.status === 'fulfilled' && totalsRes.value.exists()) {
+    renderCards(totalsRes.value.data());
+  } else {
+    renderCards({});
+  }
+
+  // Chart — sort ascending for display
+  if (dailyRes.status === 'fulfilled') {
+    const days = dailyRes.value.docs
+      .map(d => d.data())
+      .sort((a, b) => a.date < b.date ? -1 : 1);
+    renderChart(days);
+  } else {
+    renderChart([]);
+  }
+
+  // Top articles
+  if (articlesRes.status === 'fulfilled') {
+    renderTable('articlesBody', articlesRes.value.docs.map(d => d.data()), 'title', 'views');
+  } else {
+    renderTable('articlesBody', [], 'title', 'views');
+  }
+
+  // Top searches
+  if (searchesRes.status === 'fulfilled') {
+    renderTable('searchesBody', searchesRes.value.docs.map(d => d.data()), 'query', 'count');
+  } else {
+    renderTable('searchesBody', [], 'query', 'count');
+  }
+
+  document.getElementById('dashUpdated').textContent =
+    'Updated ' + new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+}
+
+// ── SCREENS ──────────────────────────────────────────────────────────────
+function showLogin() {
+  document.getElementById('loginScreen').style.display = 'flex';
+  document.getElementById('dashboard').style.display   = 'none';
+}
+
+function showDashboard() {
+  document.getElementById('loginScreen').style.display = 'none';
+  document.getElementById('dashboard').style.display   = 'block';
+  loadData();
+}
+
+// ── BOOT ─────────────────────────────────────────────────────────────────
+isAuthed() ? showDashboard() : showLogin();
+
+// ── EYE TOGGLE ───────────────────────────────────────────────────────────
+document.getElementById('eyeToggle').addEventListener('click', () => {
+  const inp = document.getElementById('passwordInput');
+  const ico = document.getElementById('eyeIcon');
+  const show = inp.type === 'password';
+  inp.type = show ? 'text' : 'password';
+  ico.innerHTML = show
+    ? `<path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24M1 1l22 22" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>`
+    : `<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8"/>`;
+});
+
+// ── LOGIN ─────────────────────────────────────────────────────────────────
+async function tryLogin() {
+  const cfg = typeof ANALYTICS_CONFIG !== 'undefined' ? ANALYTICS_CONFIG : null;
+  const inp  = document.getElementById('passwordInput');
+  const err  = document.getElementById('loginError');
+  const btn  = document.getElementById('loginBtn');
+  const card = document.getElementById('loginCard');
+
+  if (!cfg) {
+    err.textContent = '_config.js not loaded. Check the file exists beside admin.html.';
+    err.classList.add('show');
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Signing in…';
+  err.classList.remove('show');
+
+  const hash = await sha256hex(inp.value);
+
+  if (hash === cfg.password_hash) {
+    setAuthed();
+    showDashboard();
+  } else {
+    btn.disabled = false;
+    btn.textContent = 'Sign In';
+    err.textContent = 'Incorrect password. Please try again.';
+    err.classList.add('show');
+    inp.value = '';
+    inp.focus();
+    card.style.animation = 'none';
+    void card.offsetHeight;
+    card.style.animation = '';
+    card.classList.add('shake');
+    setTimeout(() => card.classList.remove('shake'), 500);
+  }
+}
+
+document.getElementById('loginBtn').addEventListener('click', tryLogin);
+document.getElementById('passwordInput').addEventListener('keydown', e => {
+  if (e.key === 'Enter') tryLogin();
+});
+
+// ── LOGOUT ───────────────────────────────────────────────────────────────
+document.getElementById('logoutBtn').addEventListener('click', () => {
+  clearAuth();
+  document.getElementById('passwordInput').value = '';
+  showLogin();
+});
+</script>
+
+</body>
+</html>
