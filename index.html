@@ -1194,6 +1194,66 @@
     @media (prefers-reduced-motion: reduce) {
       .reveal { opacity: 1; transform: none; }
     }
+
+    /* ════════════════════════
+       RESPONSIVE — full-device pass
+       ════════════════════════ */
+
+    /* Tablets & below: bring the hero phones back under the copy */
+    @media (max-width: 960px) {
+      .hero-visual {
+        display: block;
+        height: clamp(280px, 58vw, 440px);
+        width: 100%;
+        max-width: 620px;
+        margin: 0.5rem auto 0;
+      }
+    }
+
+    /* Stacked cards & grids */
+    @media (max-width: 880px) {
+      /* inline grid-column/row on cards breaks the 1-column grid */
+      .feat__grid > .feat { grid-column: auto !important; grid-row: auto !important; }
+      /* inline negative margins push screenshots off-center when cards stack */
+      .feat > img { width: min(78%, 300px) !important; margin: 0 auto !important; }
+      .theme-chips { flex-wrap: wrap; }
+      .ritual__grid { gap: 2.4rem; }
+      .ritual__phone { justify-self: center; width: 100%; max-width: 480px; }
+    }
+
+    /* Phones */
+    @media (max-width: 600px) {
+      .hero { padding: 24px 16px 52px; }
+      .hero-inner { padding: 84px 0 0; gap: 1.4rem; }
+      .hero-h1 { font-size: clamp(40px, 11.5vw, 52px); }
+      .features, .ritual, .faq { padding: 4.5rem 0; }
+      .readerSec { padding: 4.5rem 0 5.5rem; }
+      .cta { padding: 5rem 0; }
+      .stats { padding: 2.6rem 0; }
+      .stats__row { gap: 1.4rem 1rem; }
+      .feat { padding: 1.6rem 1.2rem; gap: 1.4rem; }
+      .faq details { padding: 1rem 1.1rem; }
+      .rpage { padding: 1.2rem 1.25rem 1.4rem; }
+      .reader__status { padding: .8rem 1.25rem .3rem; }
+      .reader__progress { margin: 0 1.1rem .2rem; }
+      .footer { padding: 2.4rem 0; }
+      .footer__inner, .footer__left { flex-direction: column; align-items: flex-start; gap: 1.2rem; }
+      .footer__social { margin-left: 0; }
+    }
+
+    /* Small phones */
+    @media (max-width: 400px) {
+      .nav-logo { padding: 6px 12px 6px 6px; }
+      .nav-btn { padding: 9px 16px; font-size: 13px; }
+      .store-row { gap: 8px; }
+      .store-badge { padding: 9px 14px; }
+      .hero-visual { height: clamp(240px, 62vw, 300px); }
+    }
+
+    /* Short viewports (landscape phones): keep the demo phone on screen */
+    @media (max-height: 640px) {
+      .reader__screen { height: min(600px, 86vh); }
+    }
   </style>
 </head>
 <body>
