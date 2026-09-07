@@ -1,0 +1,222 @@
+/* ============================================================
+   QuickyWiki: shared styles for document pages
+   (privacy, terms, delete-account, contact, 404)
+   Design tokens mirror index.html so every page reads as one site.
+   ============================================================ */
+
+:root{
+  --pine:#072117;
+  --pine-2:#0A2C1E;
+  --green:#00693E;
+  --green-hi:#0B8A55;
+  --mint:#8FDBB2;
+  --sea:#DFF2E7;
+  --ivory:#F8F5EC;
+  --ivory-2:#F1EDDF;
+  --ink:#13201A;
+  --muted:#5E6D63;
+  --line-l:rgba(19,32,26,.11);
+  --display:"New York","New York Large","New York Medium",ui-serif,Georgia,"Times New Roman",serif;
+  --body:"Satoshi",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  --ease-spring:cubic-bezier(.34,1.45,.5,1);
+  --ease-out:cubic-bezier(.22,.9,.3,1);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--body);
+  color:var(--ink);
+  background:var(--ivory);
+  line-height:1.7;
+  font-size:16px;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img,svg{display:block;max-width:100%}
+img{height:auto}
+a{color:inherit}
+::selection{background:rgba(0,105,62,.2)}
+.q{fill:currentColor}
+:focus-visible{outline:2px solid var(--green-hi);outline-offset:3px;border-radius:4px}
+
+.wrap{max-width:760px;margin:0 auto;padding:0 24px}
+.eyebrow{
+  font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--mint);display:flex;align-items:center;gap:12px;
+}
+.eyebrow::before{content:"";width:30px;height:1px;background:var(--mint)}
+
+/* ================= Nav ================= */
+.nav{padding:18px 16px 0}
+.nav-capsule{
+  max-width:1040px;margin:0 auto;
+  display:flex;align-items:center;gap:18px;
+  padding:9px 10px 9px 20px;border-radius:999px;color:#fff;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(143,219,178,.18);
+  backdrop-filter:blur(18px) saturate(1.35);
+  -webkit-backdrop-filter:blur(18px) saturate(1.35);
+}
+.brand{
+  display:flex;align-items:center;gap:10px;text-decoration:none;
+  font-family:var(--display);font-size:19px;font-weight:600;letter-spacing:-.01em;
+}
+.brand-chip{width:19px;display:grid;place-items:center;transition:transform .3s var(--ease-spring)}
+.brand:hover .brand-chip{transform:rotate(-8deg) scale(1.08)}
+.brand-chip svg{width:100%;color:#fff}
+.nav-back{
+  margin-left:auto;display:inline-flex;align-items:center;gap:8px;
+  text-decoration:none;font-size:13.5px;font-weight:500;
+  padding:9px 18px;border-radius:999px;
+  background:rgba(255,255,255,.08);border:1px solid rgba(143,219,178,.16);
+  transition:background .25s,transform .25s var(--ease-out);
+}
+.nav-back:hover{background:rgba(255,255,255,.16);transform:translateY(-1px)}
+.nav-back svg{width:15px}
+
+/* ================= Page head (dark band) ================= */
+.page-head{
+  position:relative;overflow:hidden;
+  background:linear-gradient(165deg,var(--pine),var(--pine-2) 62%,#0d3826);
+  color:#fff;padding-bottom:104px;
+}
+.page-head .glyph{
+  position:absolute;right:-90px;top:-40px;width:420px;
+  color:rgba(143,219,178,.055);pointer-events:none;
+}
+.page-head .rings{
+  position:absolute;left:50%;top:-320px;width:900px;transform:translateX(-50%);
+  pointer-events:none;fill:none;stroke:rgba(143,219,178,.11);
+}
+.page-head .rings .dashed{stroke-dasharray:3 10;stroke:rgba(143,219,178,.16)}
+.head-inner{position:relative;padding:76px 24px 0}
+.page-head h1{
+  font-family:var(--display);font-weight:600;
+  font-size:clamp(38px,6vw,58px);line-height:1.06;letter-spacing:-.02em;
+  margin:18px 0 0;max-width:16ch;
+}
+.page-head h1 em{font-style:italic;font-weight:500;color:var(--mint)}
+.page-head .lede{margin-top:18px;color:rgba(255,255,255,.7);font-size:17px;max-width:56ch}
+.page-head .updated{
+  margin-top:22px;display:inline-block;
+  font-size:12.5px;letter-spacing:.02em;color:var(--mint);
+  padding:6px 14px;border-radius:999px;
+  background:rgba(143,219,178,.1);border:1px solid rgba(143,219,178,.2);
+}
+
+/* ================= Document body ================= */
+main.doc{
+  position:relative;z-index:1;
+  max-width:760px;margin:-72px auto 0;
+  padding:52px 56px 64px;
+  background:var(--ivory);
+  border:1px solid var(--line-l);
+  border-radius:26px;
+  box-shadow:0 40px 90px -50px rgba(7,33,23,.35);
+}
+main.doc > *:first-child{margin-top:0}
+
+main.doc h2{
+  font-family:var(--display);font-weight:600;
+  font-size:25px;line-height:1.2;letter-spacing:-.015em;
+  color:var(--ink);margin:44px 0 14px;
+  padding-top:26px;border-top:1px solid var(--line-l);
+}
+main.doc h2:first-of-type{border-top:none;padding-top:0;margin-top:0}
+main.doc h3{
+  font-family:var(--body);font-weight:700;font-size:15.5px;
+  letter-spacing:.005em;color:var(--ink);margin:26px 0 8px;
+}
+main.doc p,main.doc li{font-size:16px;color:var(--muted)}
+main.doc p{margin-bottom:16px}
+main.doc ul,main.doc ol{padding-left:22px;margin-bottom:18px}
+main.doc li{margin-bottom:9px}
+main.doc li::marker{color:var(--green-hi)}
+main.doc strong{color:var(--ink);font-weight:700}
+main.doc a{
+  color:var(--green);font-weight:500;
+  text-decoration:underline;text-decoration-color:rgba(0,105,62,.32);
+  text-underline-offset:3px;transition:text-decoration-color .2s,color .2s;
+}
+main.doc a:hover{color:var(--green-hi);text-decoration-color:currentColor}
+/* Buttons keep their own treatment inside the document flow. */
+main.doc a.btn{text-decoration:none}
+main.doc a.btn-green,main.doc a.btn-green:hover{color:#fff}
+
+/* Cards + callouts */
+.card{
+  margin:30px 0;padding:30px 32px;
+  background:#fff;border:1px solid var(--line-l);border-radius:20px;
+  box-shadow:0 18px 44px -34px rgba(7,33,23,.4);
+}
+.card .label{
+  font-size:11.5px;color:var(--green);letter-spacing:.16em;
+  font-weight:700;text-transform:uppercase;margin-bottom:14px;
+}
+.card .note{font-size:14px;color:var(--muted);margin:16px 0 0}
+.card a.email{
+  font-family:var(--display);font-size:clamp(18px,4.8vw,23px);font-weight:600;
+  color:var(--ink);text-decoration:none;overflow-wrap:anywhere;
+  display:inline-block;transition:color .2s;
+}
+.card a.email:hover{color:var(--green)}
+
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  padding:15px 28px;border-radius:999px;text-decoration:none;
+  font-size:15px;font-weight:600;
+  transition:transform .25s var(--ease-out),box-shadow .25s;
+}
+.btn-green{
+  background:linear-gradient(140deg,var(--green-hi),var(--green));
+  color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.16);
+}
+.btn-green:hover{transform:translateY(-2px);box-shadow:0 14px 34px -10px rgba(0,105,62,.6)}
+.btn-block{display:flex;width:100%}
+
+.callout{
+  margin:28px 0;padding:22px 26px;
+  background:var(--sea);border:1px solid rgba(0,105,62,.16);
+  border-left:3px solid var(--green);border-radius:14px;
+}
+.callout p{margin:0;color:#204a37;font-size:15.5px}
+.callout p + p{margin-top:12px}
+
+/* ================= Footer ================= */
+footer{
+  background:var(--pine);color:rgba(255,255,255,.62);
+  margin-top:88px;padding:56px 0 46px;
+}
+footer .wrap{max-width:1140px}
+.foot-inner{display:flex;flex-wrap:wrap;gap:32px;align-items:center;justify-content:space-between}
+.foot-brand{
+  display:flex;align-items:center;gap:10px;
+  font-family:var(--display);font-size:18px;font-weight:600;
+  color:#fff;text-decoration:none;
+}
+.foot-brand svg{width:15px;color:#fff}
+.foot-links{display:flex;gap:24px;flex-wrap:wrap}
+.foot-links a{font-size:13.5px;text-decoration:none;transition:color .2s}
+.foot-links a:hover{color:var(--mint)}
+.foot-note{
+  margin-top:38px;padding-top:26px;
+  border-top:1px solid rgba(255,255,255,.09);
+  font-size:12.5px;display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;
+}
+
+/* ================= Responsive ================= */
+@media (max-width:720px){
+  .head-inner{padding:56px 22px 0}
+  .page-head{padding-bottom:88px}
+  .page-head .glyph{width:280px;right:-70px}
+  main.doc{margin:-60px 20px 0;padding:38px 26px 48px;border-radius:22px}
+  main.doc h2{font-size:22px}
+  .card{padding:24px 22px}
+  .foot-inner{flex-direction:column;align-items:flex-start;gap:22px}
+  .foot-note{flex-direction:column;gap:8px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+}
