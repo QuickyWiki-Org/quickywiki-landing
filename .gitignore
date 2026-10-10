@@ -8,3 +8,10 @@ _config.js
 # OS
 .DS_Store
 Thumbs.db
+
+# Build tooling output
+_build/export/bin/
+_build/export/obj/
+_build/quickies.json
+_build/covers/bin/
+_build/covers/obj/

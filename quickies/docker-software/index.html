@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-69NKB9P3LH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1TELEXWQ17');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#072117">
+<title>Docker (software): explained in 5 minutes · QuickyWiki</title>
+<meta name="description" content="It started as a side project inside a struggling hosting company, and it ended the sentence &quot;but it works on my machine&quot; by shipping the machine along with…">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://quickywiki.app/quickies/docker-software/">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="QuickyWiki">
+<meta property="og:title" content="Docker (software): explained in 5 minutes · QuickyWiki">
+<meta property="og:description" content="It started as a side project inside a struggling hosting company, and it ended the sentence &quot;but it works on my machine&quot; by shipping the machine along with…">
+<meta property="og:url" content="https://quickywiki.app/quickies/docker-software/">
+<meta property="og:image" content="https://quickywiki.app/assets/covers/q/docker-software.webp">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Docker (software): explained in 5 minutes · QuickyWiki">
+<meta name="twitter:description" content="It started as a side project inside a struggling hosting company, and it ended the sentence &quot;but it works on my machine&quot; by shipping the machine along with…">
+<meta name="twitter:image" content="https://quickywiki.app/assets/covers/q/docker-software.webp">
+
+<link rel="icon" type="image/png" href="/logo.png">
+<link rel="apple-touch-icon" href="/logo.png">
+
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,401,500,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/pages.css">
+<link rel="stylesheet" href="/assets/quickies.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Docker (software)",
+  "description": "It started as a side project inside a struggling hosting company, and it ended the sentence \"but it works on my machine\" by shipping the machine along with…",
+  "url": "https://quickywiki.app/quickies/docker-software/",
+  "mainEntityOfPage": "https://quickywiki.app/quickies/docker-software/",
+  "image": [
+    "https://quickywiki.app/assets/covers/q/docker-software.webp"
+  ],
+  "articleSection": "Tech",
+  "inLanguage": "en",
+  "timeRequired": "PT5M",
+  "author": {
+    "@type": "Organization",
+    "name": "QuickyWiki",
+    "url": "https://quickywiki.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://quickywiki.app/logo.png"
+    }
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "QuickyWiki",
+    "url": "https://quickywiki.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://quickywiki.app/logo.png"
+    }
+  },
+  "isBasedOn": "https://en.wikipedia.org/wiki/Docker_(software)",
+  "license": "https://creativecommons.org/licenses/by-sa/4.0/"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://quickywiki.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Quickies",
+      "item": "https://quickywiki.app/quickies/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Tech",
+      "item": "https://quickywiki.app/quickies/topics/tech/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Docker (software)",
+      "item": "https://quickywiki.app/quickies/docker-software/"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="qglyph" viewBox="0 0 528.5 560.3"><path class="q" d="M419.7 551.4C406.2 549.7 389.8 543.3 376.6 534.5C364 526.1 346.2 507.9 331.7 488.5C325.1 479.7 319.5 472.3 319.2 472C318.9 471.8 315.1 466.8 310.8 461C294.7 439.8 283.5 427.9 266.1 413.5C255.7 405 239.9 399 227.5 399C219.3 399 212.4 400.6 203 404.6L195.3 407.8L190.7 402.3C188.2 399.3 186.2 396.5 186.2 396.1C186.2 393.4 202.6 381.6 212.7 377C244.4 362.8 281 362.2 312.2 375.3C324.5 380.4 344.9 393.5 350.6 399.9C351.7 401.1 353 402 353.6 402C354.8 402 359.1 393.4 362.9 383.1C370.5 362.6 377 332.7 380.2 302.5C382 285.5 382.6 244.1 381.3 226C376 153 355.4 96.2 322.1 62.9C306.3 47.1 288.1 37.7 267 34.6C244 31.2 224.3 34.1 204.7 43.6C183 54.2 164.8 73.4 150.3 101.2C138.8 123.1 131.2 147.6 125.8 180C121.6 205.5 121.1 211.1 120.5 245.5C120.1 272.3 120.3 281.8 121.7 295.5C124.7 325.9 130.1 351.7 138 373.5C144.3 391.2 157.7 417.5 164.5 425.9C166.2 428.1 168.8 431.4 170.2 433.2C175.8 440.6 189.9 453.4 198.6 458.7C224.2 474.6 257.4 478.5 284.5 468.9C287.7 467.8 290.7 467 291.2 467.2C292.3 467.6 309.2 491.7 309.2 492.9C309.2 493.4 307.3 494 305 494.4C302.6 494.7 296.7 495.6 291.9 496.5C256.7 502.5 214.8 500.1 179.2 489.9C137 477.8 106.6 460.3 77.7 431.6C52.2 406.4 35.8 380.5 22.8 344.9C18.5 333.1 13 310.5 10.6 295C8.3 280.5 8 236 10.1 220C14.1 188.8 23 159 36 133.5C41.5 122.7 56.5 99.5 62 93.5C63.5 91.8 67.3 87.4 70.5 83.8C93.9 57.3 132.3 32.5 167.6 21C195.1 12 220.7 8 251.2 8C271.5 8 283.8 9.1 301.2 12.5C364.2 24.9 413.2 55.8 449.8 106.2C455.8 114.4 467.1 134.3 470.1 141.8C471.1 144.4 473.4 149.7 475 153.5C481.2 167.9 487.4 192.3 490.9 216C493.1 231.5 493.4 277 491.4 292C486.6 327.3 477 356.7 461.3 384C458.4 389.3 454.9 394.9 453.7 396.5C435.8 421.2 418.5 440.1 404.6 449.9L401.3 452.3L407.5 459.4C416.3 469.4 432.7 485.3 439.8 490.6C447 496 461 503.3 467.2 504.8C481.8 508.5 493.4 506.5 506.9 498C509.5 496.4 511.3 497.6 517 505.4L520.5 510.3L514.6 515.9C488.5 540.8 462 552.3 431.7 551.9C426.8 551.8 421.4 551.6 419.7 551.4Z" fill-rule="evenodd"/></symbol>
+    <symbol id="i-back" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></symbol>
+  </defs>
+</svg>
+<div class="page-head">
+  <svg class="rings" viewBox="0 0 900 900" aria-hidden="true">
+    <circle cx="450" cy="450" r="440"/>
+    <circle cx="450" cy="450" r="330" class="dashed"/>
+    <circle cx="450" cy="450" r="220"/>
+  </svg>
+  <svg class="glyph" viewBox="0 0 528.5 560.3" aria-hidden="true"><use href="#qglyph"/></svg>
+
+  <header class="nav">
+    <div class="nav-capsule">
+      <a class="brand" href="/"><span class="brand-chip"><svg viewBox="0 0 528.5 560.3"><use href="#qglyph"/></svg></span>QuickyWiki</a>
+      <a class="nav-back" href="/quickies/"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-back"/></svg>All Quickies</a>
+    </div>
+  </header>
+
+  <div class="wrap head-inner">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/quickies/">Quickies</a><span aria-hidden="true">/</span><a href="/quickies/topics/tech/">Tech</a></nav>
+    <h1>Docker (software)</h1>
+    <p class="lede">It started as a side project inside a struggling hosting company, and it ended the sentence &quot;but it works on my machine&quot; by shipping the machine along with the software.</p>
+    <p class="updated">5 min read · 10 key facts · 15 terms decoded</p>
+  </div>
+</div>
+
+<main class="doc q-article">
+    <figure class="q-cover"><img src="/assets/covers/q/docker-software.webp" alt="Illustration for Docker (software)" width="640" height="640" fetchpriority="high" decoding="async"></figure>
+    <article>
+    <section class="q-section">
+      <h2 id="s1">Ship the Whole World, Not Just the Code</h2>
+      <p>Software has always had an awkward habit of working perfectly for the person who wrote it and failing everywhere else. The reason is rarely the code. It is everything around the code: the libraries, the configuration files, the exact versions of things quietly installed on one machine and missing on another.</p>
+      <p><strong>Docker</strong> attacks that by packaging an application together with its dependencies into a <strong><a class="term" href="#term-container">container</a></strong>, which can in principle run on any Linux, Windows or macOS computer. The same package runs on a laptop, on a server in a rack, or in a public or private cloud, without being rebuilt for each.</p>
+      <p>Containers are isolated from one another and bundle their own software, libraries and configuration files, communicating only through well-defined channels. The critical detail is what they do not bundle: because all containers on a machine share the services of a single operating system <a class="term" href="#term-kernel">kernel</a>, they use far fewer resources than virtual machines do.</p>
+    </section>
+    <section class="q-section">
+      <h2 id="s2">A Side Project at a Company That Became Something Else</h2>
+      <p><strong>Solomon Hykes</strong> started Docker in France as an internal project inside <strong>dotCloud</strong>, a <a class="term" href="#term-platform-as-a-<a class="term" href="#term-service">service</a>">platform-as-a-service</a> company. dotCloud had been founded by Kamel Founadi, Hykes and Sebastien Pahl during the Y Combinator Summer 2010 group and launched in 2011.</p>
+      <p>The side project ate the company. In 2013 dotCloud Inc. renamed itself Docker Inc., and the tool debuted publicly that year at PyCon in Santa Clara, released as <a class="term" href="#term-open-source">open source</a> in March 2013.</p>
+      <p>The early version was not the one people know. At launch it used <strong><a class="term" href="#term-lxc">LXC</a></strong> as its default execution environment. A year later, with version 0.9, Docker replaced LXC with its own component called <strong>libcontainer</strong>, written in the Go programming language, which let it talk to the kernel directly instead of through someone else&#39;s layer. In 2017 Docker created the Moby project for open research and development, and in March 2026 the Communications of the ACM ran Docker as its cover article in a retrospective on the previous decade.</p>
+    </section>
+    <section class="q-section">
+      <h2 id="s3">Almost All of It Was Already in the Kernel</h2>
+      <p>The most striking thing about Docker&#39;s design is how little of it Docker had to invent. On Linux it assembles existing kernel features into something new.</p>
+      <p>Two do the heavy lifting. <strong>Namespaces</strong> isolate an application&#39;s view of its operating environment, including process trees, the network, user IDs and mounted file systems, so a container sees what looks like its own machine. <strong><a class="term" href="#term-cgroups">Cgroups</a></strong> handle resource limiting for memory and CPU, so one container cannot starve the others. Add a union-capable file system such as <a class="term" href="#term-overlayfs">OverlayFS</a>, and containers can run inside a single Linux instance while avoiding the overhead of starting and maintaining virtual machines.</p>
+      <p>That lightness is the whole point. A single server or <a class="term" href="#term-virtual-machine">virtual machine</a> can run several containers at once: a 2018 analysis found a typical Docker use case involves eight containers per host, with a quarter of the organisations analysed running 18 or more. It will even install on a single board computer like a Raspberry Pi. On macOS, where those Linux kernel features do not exist, Docker quietly runs the containers inside a Linux virtual machine.</p>
+    </section>
+    <section class="q-section">
+      <h2 id="s4">Images, Containers and the Place They Live</h2>
+      <p>Docker&#39;s vocabulary trips people up, because three different things sound like they might be the same thing.</p>
+      <p>An <strong><a class="term" href="#term-image">image</a></strong> is a read-only template used to build containers, and it is what actually gets stored and shipped around. A <strong>container</strong> is a standardized, encapsulated running environment built from an image. A <strong>service</strong> allows containers to be scaled across multiple Docker daemons, and the resulting group of cooperating daemons is called a swarm.</p>
+      <p>Underneath sits the machinery. The Docker <a class="term" href="#term-daemon">daemon</a>, <strong><a class="term" href="#term-dockerd">dockerd</a></strong>, is a persistent process that manages containers and listens for requests via the Docker Engine API, while the client program, `docker`, is the command-line interface people actually type into. Images live in a <strong><a class="term" href="#term-registry">registry</a></strong>, a repository that clients pull from and push to, which can be public or private. The main public one, Docker Hub, is where Docker looks by default. And a <strong><a class="term" href="#term-dockerfile">Dockerfile</a></strong> is just a text file specifying how to build an image: the Linux distribution, the install commands for the language runtime, and the application source.</p>
+    </section>
+    <section class="q-section">
+      <h2 id="s5">Everyone Adopted It, Then the Free Ride Narrowed</h2>
+      <p>Adoption was fast and came from every direction at once. Red Hat announced a collaboration in September 2013 covering Fedora, RHEL and OpenShift. Microsoft announced integration of the Docker engine into Windows Server in October 2014. Container services arrived on Amazon EC2 in November 2014, IBM struck a strategic partnership that December, and Oracle Cloud added support in December 2015 after acquiring a Docker startup.</p>
+      <p>By May 2016 the main contributors to Docker included the Docker team, Cisco, Google, Huawei, IBM, Microsoft and Red Hat. The following January, an analysis of LinkedIn profile mentions showed Docker&#39;s presence had grown by 160% during 2016.</p>
+      <p>The commercial terms eventually tightened. In August 2021 Docker ended free Docker Desktop use for larger business customers and replaced its Free Plan with a Personal Plan, though Docker Engine on Linux distributions was unaffected. Development continued regardless: Docker acquired AtomicJar in December 2023 to expand its testing capabilities, and in January 2026 OWASP released DockSec, an open-source AI-powered Docker security scanner.</p>
+    </section>
+    </article>
+
+    <aside class="card q-facts" aria-labelledby="facts-h">
+      <h2 class="label" id="facts-h">10 key facts</h2>
+      <ol>
+        <li>Docker began as an internal side project inside dotCloud, a platform-as-a-service company that renamed itself Docker Inc. in 2013.</li>
+        <li>It was shown publicly for the first time at PyCon in Santa Clara in 2013 and released as open source that March.</li>
+        <li>Docker originally ran on LXC and replaced it a year later with its own component, libcontainer, written in Go.</li>
+        <li>Containers share a single operating system kernel, which is why they use fewer resources than virtual machines.</li>
+        <li>Almost all of Docker&#39;s isolation comes from features already in the Linux kernel: namespaces for what a process can see, cgroups for how much it can use.</li>
+        <li>On macOS, Docker runs its containers inside a Linux virtual machine, because the kernel features it relies on are not there.</li>
+        <li>A 2018 analysis found a typical deployment runs eight containers per host, with a quarter of organisations running 18 or more.</li>
+        <li>Docker can be installed on a single board computer such as a Raspberry Pi.</li>
+        <li>An analysis of LinkedIn profiles found mentions of Docker grew by 160 percent during 2016.</li>
+        <li>In August 2021 Docker Desktop stopped being free for larger business customers, though Docker Engine on Linux was unaffected.</li>
+      </ol>
+    </aside>
+
+    <section class="q-glossary" aria-labelledby="terms-h">
+      <h2 id="terms-h">Key terms, decoded</h2>
+      <dl>
+        <div id="term-cgroups"><dt>cgroups</dt><dd>A kernel feature that limits how much memory and processor time a group of processes is allowed to consume.</dd></div>
+        <div id="term-container"><dt>container</dt><dd>A packaged application bundled with everything it needs to run, kept isolated from whatever else is running on the same machine.</dd></div>
+        <div id="term-daemon"><dt>daemon</dt><dd>A program that runs continuously in the background, waiting to handle requests rather than being run once by a person.</dd></div>
+        <div id="term-dockerd"><dt>dockerd</dt><dd>The name of Docker&#39;s background process, which manages containers and answers requests from the command line tool.</dd></div>
+        <div id="term-dockerfile"><dt>Dockerfile</dt><dd>A text file listing the steps for building an image, such as the base system, the install commands and the application source.</dd></div>
+        <div id="term-image"><dt>image</dt><dd>A read-only template that containers are built from, and the unit that actually gets stored and shipped.</dd></div>
+        <div id="term-kernel"><dt>kernel</dt><dd>The core of an operating system, which controls memory, processes and access to hardware.</dd></div>
+        <div id="term-lxc"><dt>LXC</dt><dd>An earlier Linux container system that Docker used before building its own replacement.</dd></div>
+        <div id="term-namespace"><dt>namespace</dt><dd>A kernel feature that limits what a process can see, so it appears to have its own network, file system and process list.</dd></div>
+        <div id="term-open-source"><dt>open source</dt><dd>Software whose source code is published so anyone can read, modify and redistribute it.</dd></div>
+        <div id="term-overlayfs"><dt>OverlayFS</dt><dd>A Linux file system that stacks layers on top of one another, letting containers share common files instead of copying them.</dd></div>
+        <div id="term-platform-as-a-service"><dt>platform-as-a-service</dt><dd>A hosting model where a provider runs the servers and operating systems, and customers supply only their application.</dd></div>
+        <div id="term-registry"><dt>registry</dt><dd>A repository where images are stored, and which clients download from or upload to.</dd></div>
+        <div id="term-service"><dt>service</dt><dd>In Docker, a definition that lets copies of a container be run and scaled across several machines at once.</dd></div>
+        <div id="term-virtual-machine"><dt>virtual machine</dt><dd>A complete simulated computer, including its own operating system, running on top of a real one. Heavier than a container.</dd></div>
+      </dl>
+    </section>
+
+    <aside class="q-cta">
+      <p class="label">Read it in the app</p>
+      <p class="q-cta-title">This is one of thousands of Quickies.</p>
+      <p>Get a fresh pick every day, jargon decoded as you read, and any topic on demand, in English and Arabic.</p>
+      <div class="q-stores">
+        <a class="store" href="https://apps.apple.com/app/quickywiki-daily-summaries/id6761535300" target="_blank" rel="noopener" aria-label="Download QuickyWiki on the App Store"><img src="/assets/badges/download-on-the-app-store.svg" alt="" width="144" height="48"></a>
+        <a class="store" href="https://play.google.com/store/apps/details?id=com.quickywiki.app" target="_blank" rel="noopener" aria-label="Get QuickyWiki on Google Play"><img src="/assets/badges/google-play-button.png" alt="" height="48"></a>
+      </div>
+    </aside>
+
+    <div class="callout q-source">
+      <p>This Quicky is an original summary based on the Wikipedia article <a href="https://en.wikipedia.org/wiki/Docker_(software)" rel="noopener" target="_blank">“Docker (software)”</a>, available under the <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license noopener" target="_blank">CC BY-SA 4.0</a> license.</p>
+    </div>
+</main>
+
+<section class="q-related wrap-wide" aria-labelledby="related-h">
+  <h2 id="related-h">Keep exploring</h2>
+  <ul class="qgrid">
+        <li><a class="qcard" href="/quickies/history-of-the-internet/">
+          <img class="qc-img" src="/assets/covers/q/history-of-the-internet.webp" alt="" width="640" height="640" loading="lazy" decoding="async">
+          <span class="qc-body">
+            <span class="qc-cat">Tech</span>
+            <span class="qc-title">History of the Internet</span>
+            <span class="qc-desc">In 1993 the internet carried just 1% of the world&#39;s two-way telecommunications traffic. By 2007, that number had…</span>
+            <span class="qc-meta">4 min read · 8 facts</span>
+          </span>
+        </a></li>
+        <li><a class="qcard" href="/quickies/world-wide-web/">
+          <img class="qc-img" src="/assets/covers/q/world-wide-web.webp" alt="" width="640" height="640" loading="lazy" decoding="async">
+          <span class="qc-body">
+            <span class="qc-cat">Tech</span>
+            <span class="qc-title">World Wide Web</span>
+            <span class="qc-desc">In 1993, the entire World Wide Web fit inside about 50 websites. Here&#39;s the tiny design trick that let it explode into…</span>
+            <span class="qc-meta">4 min read · 10 facts</span>
+          </span>
+        </a></li>
+        <li><a class="qcard" href="/quickies/enigma-machine/">
+          <img class="qc-img" src="/assets/covers/q/enigma-machine.webp" alt="" width="640" height="640" loading="lazy" decoding="async">
+          <span class="qc-body">
+            <span class="qc-cat">Tech</span>
+            <span class="qc-title">Enigma Machine</span>
+            <span class="qc-desc">Germany believed its unbreakable code kept every secret safe. Poland had already read it years before the first shot…</span>
+            <span class="qc-meta">3 min read · 9 facts</span>
+          </span>
+        </a></li>
+        <li><a class="qcard" href="/quickies/stuxnet/">
+          <img class="qc-img" src="/assets/covers/q/stuxnet.webp" alt="" width="640" height="640" loading="lazy" decoding="async">
+          <span class="qc-body">
+            <span class="qc-cat">Tech</span>
+            <span class="qc-title">Stuxnet</span>
+            <span class="qc-desc">A piece of malware that never once touched the internet still managed to physically wreck machinery inside a guarded…</span>
+            <span class="qc-meta">4 min read · 10 facts</span>
+          </span>
+        </a></li>
+        <li><a class="qcard" href="/quickies/arpanet/">
+          <img class="qc-img" src="/assets/covers/q/arpanet.webp" alt="" width="640" height="640" loading="lazy" decoding="async">
+          <span class="qc-body">
+            <span class="qc-cat">Tech</span>
+            <span class="qc-title">ARPANET</span>
+            <span class="qc-desc">Decades before the modern internet, a defense-funded experiment tried to send one small command between two computers…</span>
+            <span class="qc-meta">4 min read · 9 facts</span>
+          </span>
+        </a></li>
+        <li><a class="qcard" href="/quickies/transistor/">
+          <img class="qc-img" src="/assets/covers/q/transistor.webp" alt="" width="640" height="640" loading="lazy" decoding="async">
+          <span class="qc-body">
+            <span class="qc-cat">Tech</span>
+            <span class="qc-title">Transistor</span>
+            <span class="qc-desc">A tiny crystal, two gold wires, and six weeks of tinkering in a New Jersey lab quietly launched the most-copied object…</span>
+            <span class="qc-meta">3 min read · 10 facts</span>
+          </span>
+        </a></li>
+  </ul>
+  <p class="q-all"><a class="btn btn-green" href="/quickies/">Browse all 582 Quickies</a></p>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-inner">
+      <a class="foot-brand" href="/"><svg viewBox="0 0 528.5 560.3"><use href="#qglyph"/></svg>QuickyWiki</a>
+      <nav class="foot-links" aria-label="Footer">
+        <a href="/">Home</a>
+        <a href="/quickies/">Quickies</a>
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/terms.html">Terms of Use</a>
+        <a href="/contact.html">Contact</a>
+        <a href="https://www.instagram.com/quickywiki.app/" target="_blank" rel="noopener">Instagram</a>
+      </nav>
+    </div>
+    <div class="foot-note">
+      <span>&copy; 2026 QuickyWiki. Made for curious minds.</span>
+      <span>Summaries are crafted from openly licensed sources, including Wikipedia.</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
