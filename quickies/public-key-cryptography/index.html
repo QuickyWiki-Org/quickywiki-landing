@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-69NKB9P3LH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1TELEXWQ17');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#072117">
+<title>Public-Key Cryptography: explained in 5 minutes · QuickyWiki</title>
+<meta name="description" content="Two total strangers can agree on a secret code out in the open, with the whole world watching, and cracking it is nearly impossible — that is the strange…">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://quickywiki.app/quickies/public-key-cryptography/">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="QuickyWiki">
+<meta property="og:title" content="Public-Key Cryptography: explained in 5 minutes · QuickyWiki">
+<meta property="og:description" content="Two total strangers can agree on a secret code out in the open, with the whole world watching, and cracking it is nearly impossible — that is the strange…">
+<meta property="og:url" content="https://quickywiki.app/quickies/public-key-cryptography/">
+<meta property="og:image" content="https://quickywiki.app/assets/covers/q/public-key-cryptography.webp">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Public-Key Cryptography: explained in 5 minutes · QuickyWiki">
+<meta name="twitter:description" content="Two total strangers can agree on a secret code out in the open, with the whole world watching, and cracking it is nearly impossible — that is the strange…">
+<meta name="twitter:image" content="https://quickywiki.app/assets/covers/q/public-key-cryptography.webp">
+
+<link rel="icon" type="image/png" href="/logo.png">
+<link rel="apple-touch-icon" href="/logo.png">
+
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,401,500,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/pages.css">
+<link rel="stylesheet" href="/assets/quickies.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Public-Key Cryptography",
+  "description": "Two total strangers can agree on a secret code out in the open, with the whole world watching, and cracking it is nearly impossible — that is the strange…",
+  "url": "https://quickywiki.app/quickies/public-key-cryptography/",
+  "mainEntityOfPage": "https://quickywiki.app/quickies/public-key-cryptography/",
+  "image": [
+    "https://quickywiki.app/assets/covers/q/public-key-cryptography.webp"
+  ],
+  "articleSection": "Tech",
+  "inLanguage": "en",
+  "timeRequired": "PT5M",
+  "author": {
+    "@type": "Organization",
+    "name": "QuickyWiki",
+    "url": "https://quickywiki.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://quickywiki.app/logo.png"
+    }
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "QuickyWiki",
+    "url": "https://quickywiki.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://quickywiki.app/logo.png"
+    }
+  },
+  "isBasedOn": "https://en.wikipedia.org/wiki/Public-key_cryptography",
+  "license": "https://creativecommons.org/licenses/by-sa/4.0/"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://quickywiki.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Quickies",
+      "item": "https://quickywiki.app/quickies/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Tech",
+      "item": "https://quickywiki.app/quickies/topics/tech/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Public-Key Cryptography",
+      "item": "https://quickywiki.app/quickies/public-key-cryptography/"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="qglyph" viewBox="0 0 528.5 560.3"><path class="q" d="M419.7 551.4C406.2 549.7 389.8 543.3 376.6 534.5C364 526.1 346.2 507.9 331.7 488.5C325.1 479.7 319.5 472.3 319.2 472C318.9 471.8 315.1 466.8 310.8 461C294.7 439.8 283.5 427.9 266.1 413.5C255.7 405 239.9 399 227.5 399C219.3 399 212.4 400.6 203 404.6L195.3 407.8L190.7 402.3C188.2 399.3 186.2 396.5 186.2 396.1C186.2 393.4 202.6 381.6 212.7 377C244.4 362.8 281 362.2 312.2 375.3C324.5 380.4 344.9 393.5 350.6 399.9C351.7 401.1 353 402 353.6 402C354.8 402 359.1 393.4 362.9 383.1C370.5 362.6 377 332.7 380.2 302.5C382 285.5 382.6 244.1 381.3 226C376 153 355.4 96.2 322.1 62.9C306.3 47.1 288.1 37.7 267 34.6C244 31.2 224.3 34.1 204.7 43.6C183 54.2 164.8 73.4 150.3 101.2C138.8 123.1 131.2 147.6 125.8 180C121.6 205.5 121.1 211.1 120.5 245.5C120.1 272.3 120.3 281.8 121.7 295.5C124.7 325.9 130.1 351.7 138 373.5C144.3 391.2 157.7 417.5 164.5 425.9C166.2 428.1 168.8 431.4 170.2 433.2C175.8 440.6 189.9 453.4 198.6 458.7C224.2 474.6 257.4 478.5 284.5 468.9C287.7 467.8 290.7 467 291.2 467.2C292.3 467.6 309.2 491.7 309.2 492.9C309.2 493.4 307.3 494 305 494.4C302.6 494.7 296.7 495.6 291.9 496.5C256.7 502.5 214.8 500.1 179.2 489.9C137 477.8 106.6 460.3 77.7 431.6C52.2 406.4 35.8 380.5 22.8 344.9C18.5 333.1 13 310.5 10.6 295C8.3 280.5 8 236 10.1 220C14.1 188.8 23 159 36 133.5C41.5 122.7 56.5 99.5 62 93.5C63.5 91.8 67.3 87.4 70.5 83.8C93.9 57.3 132.3 32.5 167.6 21C195.1 12 220.7 8 251.2 8C271.5 8 283.8 9.1 301.2 12.5C364.2 24.9 413.2 55.8 449.8 106.2C455.8 114.4 467.1 134.3 470.1 141.8C471.1 144.4 473.4 149.7 475 153.5C481.2 167.9 487.4 192.3 490.9 216C493.1 231.5 493.4 277 491.4 292C486.6 327.3 477 356.7 461.3 384C458.4 389.3 454.9 394.9 453.7 396.5C435.8 421.2 418.5 440.1 404.6 449.9L401.3 452.3L407.5 459.4C416.3 469.4 432.7 485.3 439.8 490.6C447 496 461 503.3 467.2 504.8C481.8 508.5 493.4 506.5 506.9 498C509.5 496.4 511.3 497.6 517 505.4L520.5 510.3L514.6 515.9C488.5 540.8 462 552.3 431.7 551.9C426.8 551.8 421.4 551.6 419.7 551.4Z" fill-rule="evenodd"/></symbol>
+    <symbol id="i-back" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></symbol>
+  </defs>
+</svg>
+<div class="page-head">
+  <svg class="rings" viewBox="0 0 900 900" aria-hidden="true">
+    <circle cx="450" cy="450" r="440"/>
+    <circle cx="450" cy="450" r="330" class="dashed"/>
+    <circle cx="450" cy="450" r="220"/>
+  </svg>
+  <svg class="glyph" viewBox="0 0 528.5 560.3" aria-hidden="true"><use href="#qglyph"/></svg>
+
+  <header class="nav">
+    <div class="nav-capsule">
+      <a class="brand" href="/"><span class="brand-chip"><svg viewBox="0 0 528.5 560.3"><use href="#qglyph"/></svg></span>QuickyWiki</a>
+      <a class="nav-back" href="/quickies/"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-back"/></svg>All Quickies</a>
+    </div>
+  </header>
+
+  <div class="wrap head-inner">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/quickies/">Quickies</a><span aria-hidden="true">/</span><a href="/quickies/topics/tech/">Tech</a></nav>
+    <h1>Public-Key Cryptography</h1>
+    <p class="lede">Two total strangers can agree on a secret code out in the open, with the whole world watching, and cracking it is nearly impossible — that is the strange trick quietly guarding almost every secure website you visit. Even stranger: British spies solved it first, then buried it as a secret for over two decades.</p>
+    <p class="updated">5 min read · 10 key facts · 18 terms decoded</p>
+  </div>
+</div>
+
+<main class="doc q-article">
+    <figure class="q-cover"><img src="/assets/covers/q/public-key-cryptography.webp" alt="Illustration for Public-Key Cryptography" width="640" height="640" fetchpriority="high" decoding="async"></figure>
+    <article>
+    <section class="q-section">
+      <h2 id="s1">The Secret You Can Shout From a Rooftop</h2>
+      <p>Imagine handing a stranger a locked box with an open slot on top. Anyone walking by can drop a letter in and seal it shut, but only you, holding the one matching key, can open the box and read it. That is the strange trick behind <strong>public-key cryptography</strong>: two total strangers, who have never met or exchanged a secret, can still communicate in total privacy while the whole world watches.</p>
+      <p>Every person using this system holds two keys instead of one. The <strong><a class="term" href="#term-public-key">public key</a></strong> can be handed to anyone, printed on a business card, or posted online. The <strong><a class="term" href="#term-private-key">private key</a></strong> never leaves its owner. A journalist can publish their public key so any anonymous source can send an encrypted tip, yet only the journalist, holding the private key, can unlock it.</p>
+      <p>The genius lies in a math trick called a <strong><a class="term" href="#term-one-way-function">one-way function</a></strong>: something painfully easy to do in one direction and nearly impossible to undo in the other.</p>
+    </section>
+    <section class="q-section">
+      <h2 id="s2">Britain&#39;s Twenty-Five-Year Secret</h2>
+      <p>Here is the part that sounds like fiction: public-key cryptography was invented once, kept secret, then invented again from scratch. In 1970, a British intelligence mathematician named James H. Ellis dreamed up the idea of &quot;non-secret encryption&quot; while working for GCHQ, but he could not figure out how to actually build it.</p>
+      <p>Three years later, in 1973, his colleague Clifford Cocks quietly worked out what we now call <a class="term" href="#term-rsa">RSA</a> encryption. In 1974, another colleague, Malcolm J. Williamson, independently developed the equivalent of the <a class="term" href="#term-diffie-hellman-key-exchange">Diffie-Hellman key exchange</a>. None of it was published. Britain classified the whole discovery.</p>
+      <p>Meanwhile, working with none of that knowledge, American researchers reached the same destination in public: Whitfield Diffie and Martin Hellman published their key exchange in 1976, and Ron Rivest, Adi Shamir, and Leonard Adleman published RSA in 1978. The public did not learn Britain got there first until declassification in 1997.</p>
+    </section>
+    <section class="q-section">
+      <h2 id="s3">The Math Problem Even Computers Struggle With</h2>
+      <p>Multiplying two enormous prime numbers together takes a computer a fraction of a second. Taking that giant product and working backward to find the original two primes can take an unimaginably long time. That lopsided difficulty is exactly what RSA, one of the most widely used public-key algorithms, is built on.</p>
+      <p>This kind of one-way math problem is not new. In 1874, mathematician William Stanley Jevons casually asked his readers which two numbers multiply together to make 8,616,460,799, describing the exact idea behind modern encryption decades before the first computer existed.</p>
+      <p>Other systems lean on different hard problems entirely, including the Diffie-Hellman key exchange and <a class="term" href="#term-elliptic-curve-cryptography">elliptic curve cryptography</a>, but the underlying bet is always the same: forward math is trivial, backward math is brutal.</p>
+    </section>
+    <section class="q-section">
+      <h2 id="s4">Two Keys, Two Very Different Jobs</h2>
+      <p>Public-key cryptography actually does two separate jobs, and it is easy to mix them up. The first is encryption: anyone holding a public key can scramble a message into unreadable <strong><a class="term" href="#term-ciphertext">ciphertext</a></strong>, but only the private key can turn it back into words. The second is the <a class="term" href="#term-digital-signature">digital signature</a>: the private key stamps a message, and anyone with the matching public key can confirm it is genuine, without ever being able to forge one themselves.</p>
+      <p>Because this asymmetric math is computationally heavy, almost nothing uses it alone. Everyday tools like <a class="term" href="#term-pgp">PGP</a>, <a class="term" href="#term-ssh">SSH</a>, and the padlock icon in your browser, powered by <a class="term" href="#term-tls">TLS</a>, use public-key cryptography just long enough to safely hand over a lighter-weight <a class="term" href="#term-symmetric-key">symmetric key</a>. From there, the faster symmetric key does the heavy lifting for the rest of the conversation.</p>
+    </section>
+    <section class="q-section">
+      <h2 id="s5">The Weak Link Was Never the Math</h2>
+      <p>Breaking the underlying math of public-key cryptography by brute force is theoretically possible but practically hopeless, even accounting for known shortcuts against RSA. Attackers rarely bother trying. Instead, they go after the handshake itself: a <a class="term" href="#term-man-in-the-middle-attack">man-in-the-middle attack</a> intercepts a public key mid-transmission and swaps in a fake one, tricking both sides into encrypting messages for an eavesdropper instead of each other.</p>
+      <p>To stop this, the internet leans on certificate authorities that vouch for who owns which public key, forming a system called <a class="term" href="#term-public-key-infrastructure">Public Key Infrastructure</a>. But that trust chain has its own weak point: if a <a class="term" href="#term-certificate-authority">certificate authority</a> itself gets compromised, attackers can mint convincing fake certificates.</p>
+      <p>Even flawless encryption has a blind spot: it hides what a message says, but not who sent it, when, or how long it was.</p>
+    </section>
+    <section class="q-section">
+      <h2 id="s6">A Countdown Called Quantum</h2>
+      <p>Public-key cryptography has quietly secured the internet for decades, but its expiration date may already be visible on the horizon. Quantum computers, once powerful enough, are expected to make short work of the very math problems that RSA and Diffie-Hellman rely on, the kind that ordinary computers would need eons to solve.</p>
+      <p>Cryptographers are not waiting around. Newer, quantum-resistant algorithms like <a class="term" href="#term-kyber">Kyber</a> are already being developed, designed to keep the same trick, strangers agreeing on a secret in plain sight, working even after quantum computers arrive.</p>
+      <p>It is a strange race: the same open mathematical curiosity that quietly protects nearly every secure website today might need to reinvent itself before the next great leap in computing arrives.</p>
+    </section>
+    </article>
+
+    <aside class="card q-facts" aria-labelledby="facts-h">
+      <h2 class="label" id="facts-h">10 key facts</h2>
+      <ol>
+        <li>Britain&#39;s GCHQ secretly invented public-key cryptography years before it was publicly discovered, but kept it classified until 1997.</li>
+        <li>James H. Ellis conceived the idea of non-secret encryption in 1970 but could not find a way to implement it.</li>
+        <li>Clifford Cocks quietly implemented what we now call RSA encryption in 1973, five years before Rivest, Shamir, and Adleman published it in Scientific American.</li>
+        <li>Malcolm J. Williamson developed the equivalent of the Diffie-Hellman key exchange in 1974, two years before Diffie and Hellman published it openly.</li>
+        <li>In 1874, mathematician William Stanley Jevons asked readers to guess which two numbers multiply to 8,616,460,799, describing the one-way-function idea decades before computers existed.</li>
+        <li>Public-key encryption hides what a message says but not who sent it, when, or how long it is, since that metadata often travels in the open.</li>
+        <li>Because asymmetric encryption is slow, most secure systems like PGP, SSH, and TLS actually use it only to exchange a faster symmetric key, then switch to symmetric encryption for the real conversation.</li>
+        <li>Quantum computers threaten to break many of today&#39;s public-key algorithms, which is why quantum-resistant schemes such as Kyber are already being developed.</li>
+        <li>The Merkle-Hellman knapsack cryptosystem, once considered a promising public-key algorithm, was later broken by new attacks.</li>
+        <li>Bitcoin and other cryptocurrencies rely on public-key cryptography to prove ownership of transactions.</li>
+      </ol>
+    </aside>
+
+    <section class="q-glossary" aria-labelledby="terms-h">
+      <h2 id="terms-h">Key terms, decoded</h2>
+      <dl>
+        <div id="term-certificate-authority"><dt>certificate authority</dt><dd>An organization trusted to confirm that a public key really belongs to the person or website it claims to belong to.</dd></div>
+        <div id="term-ciphertext"><dt>ciphertext</dt><dd>A message that has been scrambled by encryption so it looks like random nonsense until it is unlocked again.</dd></div>
+        <div id="term-diffie-hellman-key-exchange"><dt>Diffie-Hellman key exchange</dt><dd>A method that lets two people agree on a shared secret code over an open, watched connection without ever sending the secret itself.</dd></div>
+        <div id="term-digital-signature"><dt>digital signature</dt><dd>A stamp created with a private key that proves a message truly came from a specific person and was not changed along the way.</dd></div>
+        <div id="term-elliptic-curve-cryptography"><dt>elliptic curve cryptography</dt><dd>A method of locking and unlocking messages built on a different hard math problem than RSA, often using shorter keys for the same level of security.</dd></div>
+        <div id="term-kyber"><dt>Kyber</dt><dd>A newer encryption method designed to stay secure even after powerful quantum computers exist.</dd></div>
+        <div id="term-man-in-the-middle-attack"><dt>man-in-the-middle attack</dt><dd>A trick where someone secretly intercepts and swaps messages between two people who believe they are talking directly to each other.</dd></div>
+        <div id="term-one-way-function"><dt>one-way function</dt><dd>A math process that is quick and easy to do in one direction but takes an enormous amount of time and computing power to undo.</dd></div>
+        <div id="term-pgp"><dt>PGP</dt><dd>A software tool that lets people encrypt emails and files so only the intended recipient can read them.</dd></div>
+        <div id="term-prime-number"><dt>prime number</dt><dd>A whole number greater than 1 that can only be evenly divided by itself and 1.</dd></div>
+        <div id="term-private-key"><dt>private key</dt><dd>A secret code that only its owner keeps, used to unlock messages locked with the matching public key, or to prove a message really came from them.</dd></div>
+        <div id="term-public-key"><dt>public key</dt><dd>A code that a person shares openly with everyone, used to lock up a message so only the matching private key can unlock it.</dd></div>
+        <div id="term-public-key-infrastructure"><dt>Public Key Infrastructure</dt><dd>The overall system of certificate authorities and rules that lets people trust which public key belongs to whom.</dd></div>
+        <div id="term-quantum-computer"><dt>quantum computer</dt><dd>A powerful new kind of computer that solves certain math problems far faster than any computer used today.</dd></div>
+        <div id="term-rsa"><dt>RSA</dt><dd>A widely used method for locking and unlocking messages that relies on how hard it is to find the two prime numbers that were multiplied together to make a huge number.</dd></div>
+        <div id="term-ssh"><dt>SSH</dt><dd>A method for securely connecting to and controlling another computer over the internet.</dd></div>
+        <div id="term-symmetric-key"><dt>symmetric key</dt><dd>A single shared secret code that both sides of a conversation use to both lock and unlock messages.</dd></div>
+        <div id="term-tls"><dt>TLS</dt><dd>The technology behind the padlock icon in a web browser that keeps information private as it travels between a device and a website.</dd></div>
+      </dl>
+    </section>
+
+    <aside class="q-cta">
+      <p class="label">Read it in the app</p>
+      <p class="q-cta-title">This is one of thousands of Quickies.</p>
+      <p>Get a fresh pick every day, jargon decoded as you read, and any topic on demand, in English and Arabic.</p>
+      <div class="q-stores">
+        <a class="store" href="https://apps.apple.com/app/quickywiki-daily-summaries/id6761535300" target="_blank" rel="noopener" aria-label="Download QuickyWiki on the App Store"><img src="/assets/badges/download-on-the-app-store.svg" alt="" width="144" height="48"></a>
+        <a class="store" href="https://play.google.com/store/apps/details?id=com.quickywiki.app" target="_blank" rel="noopener" aria-label="Get QuickyWiki on Google Play"><img src="/assets/badges/google-play-button.png" alt="" height="48"></a>
+      </div>
+    </aside>
+
+    <div class="callout q-source">
+      <p>This Quicky is an original summary based on the Wikipedia article <a href="https://en.wikipedia.org/wiki/Public-key_cryptography" rel="noopener" target="_blank">“Public-key cryptography”</a>, available under the <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license noopener" target="_blank">CC BY-SA 4.0</a> license.</p>
+    </div>
+</main>
+
+<section class="q-related wrap-wide" aria-labelledby="related-h">
+  <h2 id="related-h">Keep exploring</h2>
+  <ul class="qgrid">
+        <li><a class="qcard" href="/quickies/history-of-the-internet/">
+          <img class="qc-img" src="/assets/covers/q/history-of-the-internet.webp" alt="" width="640" height="640" loading="lazy" decoding="async">
+          <span class="qc-body">
+            <span class="qc-cat">Tech</span>
+            <span class="qc-title">History of the Internet</span>
+            <span class="qc-desc">In 1993 the internet carried just 1% of the world&#39;s two-way telecommunications traffic. By 2007, that number had…</span>
+            <span class="qc-meta">4 min read · 8 facts</span>
+          </span>
+        </a></li>
+        <li><a class="qcard" href="/quickies/world-wide-web/">
+          <img class="qc-img" src="/assets/covers/q/world-wide-web.webp" alt="" width="640" height="640" loading="lazy" decoding="async">
+          <span class="qc-body">
+            <span class="qc-cat">Tech</span>
+            <span class="qc-title">World Wide Web</span>
+            <span class="qc-desc">In 1993, the entire World Wide Web fit inside about 50 websites. Here&#39;s the tiny design trick that let it explode into…</span>
+            <span class="qc-meta">4 min read · 10 facts</span>
+          </span>
+        </a></li>
+        <li><a class="qcard" href="/quickies/enigma-machine/">
+          <img class="qc-img" src="/assets/covers/q/enigma-machine.webp" alt="" width="640" height="640" loading="lazy" decoding="async">
+          <span class="qc-body">
+            <span class="qc-cat">Tech</span>
+            <span class="qc-title">Enigma Machine</span>
+            <span class="qc-desc">Germany believed its unbreakable code kept every secret safe. Poland had already read it years before the first shot…</span>
+            <span class="qc-meta">3 min read · 9 facts</span>
+          </span>
+        </a></li>
+        <li><a class="qcard" href="/quickies/stuxnet/">
+          <img class="qc-img" src="/assets/covers/q/stuxnet.webp" alt="" width="640" height="640" loading="lazy" decoding="async">
+          <span class="qc-body">
+            <span class="qc-cat">Tech</span>
+            <span class="qc-title">Stuxnet</span>
+            <span class="qc-desc">A piece of malware that never once touched the internet still managed to physically wreck machinery inside a guarded…</span>
+            <span class="qc-meta">4 min read · 10 facts</span>
+          </span>
+        </a></li>
+        <li><a class="qcard" href="/quickies/arpanet/">
+          <img class="qc-img" src="/assets/covers/q/arpanet.webp" alt="" width="640" height="640" loading="lazy" decoding="async">
+          <span class="qc-body">
+            <span class="qc-cat">Tech</span>
+            <span class="qc-title">ARPANET</span>
+            <span class="qc-desc">Decades before the modern internet, a defense-funded experiment tried to send one small command between two computers…</span>
+            <span class="qc-meta">4 min read · 9 facts</span>
+          </span>
+        </a></li>
+        <li><a class="qcard" href="/quickies/transistor/">
+          <img class="qc-img" src="/assets/covers/q/transistor.webp" alt="" width="640" height="640" loading="lazy" decoding="async">
+          <span class="qc-body">
+            <span class="qc-cat">Tech</span>
+            <span class="qc-title">Transistor</span>
+            <span class="qc-desc">A tiny crystal, two gold wires, and six weeks of tinkering in a New Jersey lab quietly launched the most-copied object…</span>
+            <span class="qc-meta">3 min read · 10 facts</span>
+          </span>
+        </a></li>
+  </ul>
+  <p class="q-all"><a class="btn btn-green" href="/quickies/">Browse all 582 Quickies</a></p>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-inner">
+      <a class="foot-brand" href="/"><svg viewBox="0 0 528.5 560.3"><use href="#qglyph"/></svg>QuickyWiki</a>
+      <nav class="foot-links" aria-label="Footer">
+        <a href="/">Home</a>
+        <a href="/quickies/">Quickies</a>
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/terms.html">Terms of Use</a>
+        <a href="/contact.html">Contact</a>
+        <a href="https://www.instagram.com/quickywiki.app/" target="_blank" rel="noopener">Instagram</a>
+      </nav>
+    </div>
+    <div class="foot-note">
+      <span>&copy; 2026 QuickyWiki. Made for curious minds.</span>
+      <span>Summaries are crafted from openly licensed sources, including Wikipedia.</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
